@@ -18,6 +18,8 @@ Then run `npm install` from backend folder. This should install the required dep
 - mysql2 2.3.3
 - nodemon 2.0.15
 - path 0.12.7
+- sequelize 6.19.0
+- sequelize-cli 6.4.1
 - xss-clean 0.1.1
 
 ## Usage ##
