@@ -21,6 +21,9 @@ exports.addPicture = (req, res) => {
     //Registers the new picture in the database
     Picture.create(newPicture)
         .then((data) => {
+            if (!data) {
+                fs.unlink(`images/${req.file.filename}`, () => {});
+            }
             return res.status(201)
                 .json({
                     message: 'Picture successfully created ' + Object.entries(data.dataValues)
@@ -28,6 +31,7 @@ exports.addPicture = (req, res) => {
         })
         .catch((error) => {
             //Create picture method failed
+            fs.unlink(`images/${req.file.filename}`, () => {});
             return res.status(500)
                 .json({
                     error: error.errors.map(e => e.message)
@@ -123,7 +127,6 @@ exports.deletePicture = (req, res) => {
                         message: 'No picture was found'
                     });
             }
-            console.log('FOUNDPICTURE => ', foundPicture)
             //Check if the sender is an Administrator or the owner of the picture
             if (!req.auth.isAdmin && req.auth.userId !== String(foundPicture.userId)) {
                 return res.status(403)
