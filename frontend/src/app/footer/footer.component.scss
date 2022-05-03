@@ -1,0 +1,37 @@
+//Media query for mobile
+footer {
+    margin: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+
+  width: 100%;
+  height: 50px;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  border-top: 1px solid rgb(202, 202, 202);
+
+  .footer__logo__wrapper {
+    img {
+      height: 50px;
+    }
+  }
+
+  .footer__copyright {
+    height: fit-content;
+
+    p {
+      width: 100%;
+    }
+  }
+}
+
+//Media query for tablet
+@media screen and (min-width: 768px) and (max-width: 1023px) {}
+
+//Media query for desktop
+@media screen and (min-width: 1024px) {}
