@@ -14,10 +14,12 @@ header {
 
   h1 {
     margin-top: -80px;
+    padding-left: 15px;
     font-size: 25px;
     font-weight: normal;
-    text-align: center;
+    white-space: nowrap;
     color: #646464;
+    border-left: 5px solid #D1515A;
   }
 
   nav {
