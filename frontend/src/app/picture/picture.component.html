@@ -1,22 +1,45 @@
 <main>
-    <h2>Exprimez-vous !</h2>
-    <section class="main__wrapper">
-  
-      <a href="#">
-        <article>
-          <figure>
-            <img src="https://picsum.photos/200/300" alt="Photo postée par un membre">
-            <figcaption>
-              <h3>Titre de la photo 1</h3>
-              <p>Postée par Stéphane, <br />le 3 mai 2022 à 18:07</p>
-              <p>Dernière activité 03/05/2022 18:25</p>
-            </figcaption>
-          </figure>
-        </article>
-      </a>
-  
-    </section>
-    <!-- FORMULAIRE TEXTAREA + BTN POUR COMMENTER -->
-    <!-- ENCART POUR LES COMMENTAIRES RANGES DU PLUS RECENT AU PLUS ANCIEN -->
-  </main>
-  
+  <h2>Exprimez-vous !</h2>
+
+  <!-- Picture card -->
+  <section class="card">
+    <article>
+      <figure>
+        <img src="https://picsum.photos/200/300" alt="Photo postée par un membre">
+        <figcaption>
+          <h3>Titre de la photo 1</h3>
+          <p>Par Stéphane, <br />03/05/2022 à 18:07</p>
+          <p>Dernière activité 03/05/2022 18:25</p>
+        </figcaption>
+      </figure>
+    </article>
+  </section>
+
+  <!-- Comment formular with textarea -->
+  <section class="formular">
+    <form action="#" id="commentForm">
+      <fieldset>
+        <legend>Commenter cette photo</legend>
+        <textarea name="commentField" id="commentField" cols="25" rows="5" placeholder="Saisissez votre commentaire ici"
+          required></textarea>
+        <p id="commentError">Champ requis</p>
+        <button id="commentSubmit">Partager votre commentaire</button>
+      </fieldset>
+    </form>
+  </section>
+
+  <!-- Comment card sample -->
+  <section class="comments">
+    <h3>Commentaires des utilisateurs</h3>
+    <article>
+      <p class="commentDate">Stéphane, le 03/05/2022 à 18:27</p>
+      <p class="commentContent">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+        has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+        and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+        PageMaker including versions of Lorem Ipsum.</p>
+    </article>
+  </section>
+
+</main>
