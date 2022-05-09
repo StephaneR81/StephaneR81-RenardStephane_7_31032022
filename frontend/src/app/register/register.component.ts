@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { RegisterService } from '../services/register/register.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  providers: [RegisterService]
 })
 export class RegisterComponent implements OnInit {
+  constructor(private registerService: RegisterService) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

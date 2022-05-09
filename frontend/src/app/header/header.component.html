@@ -1,13 +1,15 @@
 <header>
   <div class="header__logo__wrapper">
-    <img src="../../assets/images/icon-left-font-monochrome-black.png"
-      alt="Logo de Groupomania représentant un globe sur la gauche et le nom de l'entreprise sur la droite en couleur noire.">
+    <a [routerLink]="['/home']">
+      <img src="../../assets/images/icon-left-font-monochrome-black.png"
+        alt="Logo de Groupomania représentant un globe sur la gauche et le nom de l'entreprise sur la droite en couleur noire.">
+    </a>
   </div>
   <h1>Bienvenue sur notre réseau social</h1>
   <nav>
     <ul>
-      <li><a href="#">Inscription</a></li>
-      <li><a href="#">Connexion</a></li>
+      <li><a [routerLink]="['/register']">Inscription</a></li>
+      <li><a [routerLink]="['/login']">Connexion</a></li>
       <!-- <li><a href="#">Déconnexion</a></li> -->
     </ul>
   </nav>
