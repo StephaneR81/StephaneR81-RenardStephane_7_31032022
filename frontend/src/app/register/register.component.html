@@ -1,19 +1,32 @@
 <main>
   <h2>Créer un compte</h2>
   <!-- Account creation formular -->
-  <form action="#" id="signupForm">
+  <form novalidate [formGroup]="registerForm" (ngSubmit)="saveNewUser()" id="signupForm">
     <fieldset>
       <legend>Formulaire d'inscription</legend>
+
       <label for="nameField">Nom</label>
-      <input type="text" id="nameField" placeholder="Votre nom" minlength="1" maxlength="50" required>
-      <p id="nameError">Champ requis</p>
+      <input formControlName="name" type="text" id="nameField" placeholder="Nom (requis, 3 à 30 caractères)"
+        minlength="3" maxlength="30" required>
+      <p *ngIf="submitted && formControls['name'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
+
       <label for="emailField">Email</label>
-      <input type="email" id="emailField" placeholder="Votre email" minlength="1" maxlength="50" required>
-      <p id="emailError">Champ requis</p>
+      <input formControlName="email" type="email" id="emailField" placeholder="E-mail (requis, 6 à 30 caractères)"
+        minlength="6" maxlength="30" required>
+      <p *ngIf="submitted && formControls['email'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
+
       <label for="passwordField">Mot de passe</label>
-      <input type="password" id="passwordField" placeholder="Votre mot de passe" minlength="1" maxlength="50" required>
-      <p id="passwordError">Champ requis</p>
-      <button>Créer mon compte</button>
+      <input formControlName="password" type="password" id="passwordField"
+        placeholder="Mot de passe (requis, 8 à 20 caractères)" minlength="8" maxlength="20" required>
+      <p *ngIf="submitted && formControls['password'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
+
+      <button type="submit">Créer mon compte</button>
+      <p class="errorTextBox">{{ response }}</p>
+
     </fieldset>
   </form>
+
 </main>
+<!-- <pre>
+    {{ registerForm.value | json}}
+</pre> -->

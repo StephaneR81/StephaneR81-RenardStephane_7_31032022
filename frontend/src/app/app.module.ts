@@ -11,6 +11,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { WallComponent } from './wall/wall.component';
 import { PictureComponent } from './picture/picture.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,16 @@ import { PictureComponent } from './picture/picture.component';
     ProfileComponent,
     HomeComponent,
     WallComponent,
-    PictureComponent
+    PictureComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -36,10 +36,11 @@ main {
         }
       }
 
-      p {
+      .errorFormMessage {
         min-width: 20px;
         margin: 5px 0;
         font-size: 13px;
+        color: $lightRed;
       }
 
       button {
