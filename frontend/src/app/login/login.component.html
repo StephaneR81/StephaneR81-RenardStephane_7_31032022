@@ -1,15 +1,18 @@
 <main>
   <h2>Me connecter</h2>
-  <form action="#" id="loginForm">
+  <form novalidate [formGroup]="loginForm" (ngSubmit)="connectUser()" id="loginForm">
     <fieldset>
       <legend>Formulaire de connexion</legend>
       <label for="emailField">Email</label>
-      <input type="email" id="emailField" placeholder="E-mail (requis)" minlength="1" maxlength="50" required>
-      <p id="emailError"></p>
+      <input formControlName="email" type="email" id="emailField" placeholder="E-mail (requis, 6 à 30 caractères)"
+        minlength="6" maxlength="30" required>
+      <p *ngIf="submitted && formControls['email'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
       <label for="passwordField">Mot de passe</label>
-      <input type="password" id="passwordField" placeholder="Mot de passe (requis)" minlength="1" maxlength="50" required>
-      <p id="passwordError"></p>
-      <button>Me connecter</button>
+      <input formControlName="password" type="password" id="passwordField"
+        placeholder="Mot de passe (requis, 8 à 20 caractères)" minlength="8" maxlength="20" required>
+      <p *ngIf="submitted && formControls['password'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
+      <button type="submit">Me connecter</button>
+      <p class="errorTextBox">{{ response }}</p>
     </fieldset>
   </form>
 </main>

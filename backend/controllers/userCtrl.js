@@ -38,7 +38,7 @@ exports.signup = (req, res) => {
                         .then((data) => {
                             return res.status(201)
                                 .json({
-                                    message: 'User successfully created ' + data
+                                    message: 'Nouvel utilisateur enregistré avec succès. (Code 201)'
                                 });
                         })
 
@@ -46,7 +46,7 @@ exports.signup = (req, res) => {
                             //Create method failed
                             return res.status(500)
                                 .json({
-                                    error: error.errors.map(e => e.message)
+                                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                                 });
                         });
                 })
@@ -55,7 +55,7 @@ exports.signup = (req, res) => {
                     //Bcrypt method failed
                     return res.status(500)
                         .json({
-                            error: error.errors.map(e => e.message)
+                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                         });
                 });
         })
@@ -64,7 +64,7 @@ exports.signup = (req, res) => {
             //findAll method failed
             return res.status(500)
                 .json({
-                    error: error.errors.map(e => e.message)
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                 });
         });
 };
@@ -83,7 +83,7 @@ exports.login = (req, res) => {
             if (!user) {
                 return res.status(404)
                     .json({
-                        message: 'Authentication failed'
+                        message: "Echec de l'authentification."
                     });
             }
             //Compares the provided password to the one stored in the database
@@ -93,7 +93,7 @@ exports.login = (req, res) => {
                     if (!valid) { //If the 2 passwords do not match
                         return res.status(403)
                             .json({
-                                message: 'Authentication failed'
+                                message: "Echec de l'authentification."
                             });
                     }
                     return res.status(200) //Returns an userId and a token
@@ -112,15 +112,14 @@ exports.login = (req, res) => {
                 .catch((error) => { //bcrypt.compare failed
                     return res.status(500)
                         .json({
-                            error
+                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                         });
                 });
         })
         .catch((error) => { //findOne method failed
             res.status(500)
                 .json({
-
-                    error
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                 });
         });
 };

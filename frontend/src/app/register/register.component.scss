@@ -36,10 +36,11 @@ main {
         }
       }
 
-      .errorFormMessage {
+      .errorFormMessage,
+      .errorTextBox {
         min-width: 20px;
         margin: 5px 0;
-        font-size: 13px;
+        font-size: 18px;
         color: $lightRed;
       }
 
@@ -55,6 +56,7 @@ main {
         &:hover {
           background-color: $lightRed;
           color: $white;
+          cursor: pointer;
         }
       }
     }

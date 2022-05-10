@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Register } from 'src/app/models/register';
 import { Observable } from 'rxjs';
-import { MapType } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +13,6 @@ export class RegisterService {
   registerNewUser(newUser: Register): Observable<any> {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(newUser);
-    return this.http.post<any>(this._url, body, { headers: headers });
+    return this.http.post<Register>(this._url, body, { headers: headers });
   }
 }

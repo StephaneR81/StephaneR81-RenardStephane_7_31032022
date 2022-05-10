@@ -15,14 +15,14 @@ exports.create = (req, res) => {
         .then((newComment) => {
             return res.status(201)
                 .json({
-                    message: 'Comment successfully posted' + Object.entries(newComment.dataValues)
+                    message: 'Votre commentaire a été publié avec succès. (Code 201)'
                 });
         })
         .catch((error) => {
             //Create method failed
             return res.status(500)
                 .json({
-                    error: error.stack
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                 });
         });
 };
@@ -42,7 +42,7 @@ exports.modify = (req, res) => {
             if (!foundComment) {
                 return res.status(404)
                     .json({
-                        message: 'No comment found !'
+                        message: "Le commentaire n'a pas pu être trouvé. (Code 404)"
                     });
             }
 
@@ -50,7 +50,7 @@ exports.modify = (req, res) => {
             if (!req.auth.isAdmin && req.auth.userId !== String(foundComment.userId)) {
                 return res.status(403)
                     .json({
-                        error: 'Not authorized to modify this comment'
+                        message: "Vous n'avez pas la permission de modifier ce commentaire. (Code 403)"
                     });
             }
 
@@ -69,13 +69,13 @@ exports.modify = (req, res) => {
                 .then((updatedComment) => {
                     return res.status(201)
                         .json({
-                            message: 'Successfully updated comment !'
+                            message: "Le commentaire a été modifié avec succès. (Code 201)"
                         });
                 })
                 .catch((error) => {
                     return res.status(500)
                         .json({
-                            error: error.stack
+                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                         });
                 });
         })
@@ -83,7 +83,7 @@ exports.modify = (req, res) => {
             //findOne method failed
             return res.status(500)
                 .json({
-                    error: error.stack
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                 });
         });
 };
@@ -97,7 +97,7 @@ exports.delete = (req, res) => {
             if (!foundComment) {
                 return res.status(404)
                     .json({
-                        message: 'Comment not found !'
+                        message: "Le commentaire n'a pas pu être trouvé. (Code 404)"
                     });
             }
 
@@ -105,7 +105,7 @@ exports.delete = (req, res) => {
             if (!req.auth.isAdmin && req.auth.userId !== String(foundComment.userId)) {
                 return res.status(403)
                     .json({
-                        error: 'Not authorized to modify this comment'
+                        message: "Vous n'avez pas la permission de modifier ce commentaire. (Code 403)"
                     });
             }
 
@@ -119,12 +119,12 @@ exports.delete = (req, res) => {
                     if (result == 1) {
                         return res.status(201)
                             .json({
-                                message: 'Comment successfully deleted !'
+                                message: "Le commentaire a été supprimé avec succès. (Code 201)"
                             });
                     } else {
                         return res.status(401)
                             .json({
-                                message: `Could not delete the comment ! with id : ${req.params.id} !`
+                                message: `Le commentaire ID : ${req.params.id} n'a pas pu être supprimé. (Code 401)`
                             });
                     }
                 })
@@ -132,7 +132,7 @@ exports.delete = (req, res) => {
                     //delete method failed
                     return res.status(500)
                         .json({
-                            error: error.stack
+                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                         });
                 });
 
@@ -141,7 +141,7 @@ exports.delete = (req, res) => {
             //findOne method failed
             return res.status(500)
                 .json({
-                    error: error.stack
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                 });
         });
 };
@@ -155,7 +155,7 @@ exports.getAll = (req, res) => {
             if (!foundComments) {
                 return res.status(404)
                     .json({
-                        message: 'No comment to show !'
+                        message: "Aucun commentaire à afficher. (Code 404)"
                     });
             }
             return res.status(200)
@@ -165,7 +165,7 @@ exports.getAll = (req, res) => {
             //findAll method failed
             return res.status(500)
                 .json({
-                    error: error.stack
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                 });
         });
 };
@@ -183,7 +183,7 @@ exports.getOne = (req, res) => {
             if (!foundComment) {
                 return res.status(404)
                     .json({
-                        message: 'No comment found !'
+                        message: "Le commentaire n'a pas pu être trouvé. (Code 404)"
                     });
             }
             return res.status(200)
@@ -194,7 +194,7 @@ exports.getOne = (req, res) => {
             //findOne method failed
             return res.status(500)
                 .json({
-                    error: error.stack
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                 })
         });
 };

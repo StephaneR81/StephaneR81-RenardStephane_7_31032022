@@ -18,7 +18,10 @@ module.exports = (sequelize, Sequelize) => {
                     args: true,
                     msg: "Le nom est requis"
                 },
-                len: [3, 20]
+                len: {
+                    args: [3, 20],
+                    msg: "Le nom doit être compris entre 3 et 20 caractères"
+                }
             }
         },
         email: {
@@ -37,11 +40,15 @@ module.exports = (sequelize, Sequelize) => {
                     args: true,
                     msg: "L'adresse E-mail est requise"
                 },
+                len: {
+                    args: [8, 30],
+                    msg: "L'E-mail doit être compris entre 6 et 30 caractères"
+                }
 
             }
         },
         password: {
-            //password length defined at 100 characters keeping in mind that the hash can be long
+            //password length defined at 100 characters keeping in mind that the hash would be over 20 characters
             type: Sequelize.STRING,
             allowNull: false,
             validate: {
@@ -49,7 +56,11 @@ module.exports = (sequelize, Sequelize) => {
                     args: true,
                     msg: "Le mot de passe est requis (8 à 20 caractères)"
                 },
-                len: [8, 100]
+                len: {
+                    args: [8, 100],
+                    msg: "Le mot de passe doit être compris entre 8 et 20 caractères"
+                }
+
             }
         },
         isAdmin: {

@@ -26,7 +26,7 @@ exports.addPicture = (req, res) => {
             }
             return res.status(201)
                 .json({
-                    message: 'Picture successfully created ' + Object.entries(data.dataValues)
+                    message: 'La photo a été ajoutée avec succès. (Code 201)'
                 });
         })
         .catch((error) => {
@@ -34,7 +34,7 @@ exports.addPicture = (req, res) => {
             fs.unlink(`images/${req.file.filename}`, () => {});
             return res.status(500)
                 .json({
-                    error: error.errors.map(e => e.message)
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                 });
         });
 };
@@ -54,7 +54,7 @@ exports.modifyPicture = (req, res) => {
             if (!foundPicture) {
                 return res.status(404)
                     .json({
-                        message: 'No picture was found !'
+                        message: 'Aucune photo à afficher. (Code 404)'
                     });
             }
 
@@ -62,7 +62,7 @@ exports.modifyPicture = (req, res) => {
             if (!req.auth.isAdmin && req.auth.userId !== String(foundPicture.userId)) {
                 return res.status(403)
                     .json({
-                        error: 'Not authorized to modify this picture'
+                        message: "Vous n'avez pas la permission de modifier cette photo. (Code 403)"
                     });
             }
 
@@ -89,14 +89,14 @@ exports.modifyPicture = (req, res) => {
                 .then((updatedPicture) => {
                     return res.status(201)
                         .json({
-                            message: 'Successfully updated picture !'
+                            message: 'La photo a été modifiée avec succès. (Code 201)'
                         });
                 })
                 .catch((error) => {
                     //UpdateOne method failed
                     return res.status(400)
                         .json({
-                            error
+                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 400)'
                         });
                 });
 
@@ -105,7 +105,7 @@ exports.modifyPicture = (req, res) => {
             //FindOne method failed
             return res.status(500)
                 .json({
-                    error
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                 });
         });
 };
@@ -124,14 +124,14 @@ exports.deletePicture = (req, res) => {
             if (!foundPicture) {
                 return res.status(404)
                     .json({
-                        message: 'No picture was found'
+                        message: "Cette photo n'existe pas. (Code 404)"
                     });
             }
             //Check if the sender is an Administrator or the owner of the picture
             if (!req.auth.isAdmin && req.auth.userId !== String(foundPicture.userId)) {
                 return res.status(403)
                     .json({
-                        error: 'Not authorized to modify this picture'
+                        message: "Vous n'avez pas la permission de modifier cette photo. (Code 403)"
                     });
             }
 
@@ -150,12 +150,12 @@ exports.deletePicture = (req, res) => {
                         if (result == 1) {
                             return res.status(201)
                                 .json({
-                                    message: 'Picture successfully deleted !'
+                                    message: 'La photo a été supprimée avec succès. (code 201)'
                                 });
                         } else {
                             return res.status(401)
                                 .json({
-                                    message: `Could not delete the picture with id : ${req.params.id} !`
+                                    message: `La photo ID : ${req.params.id} n'a pas pu être supprimée. (code 401)`
                                 });
                         }
                     })
@@ -163,7 +163,7 @@ exports.deletePicture = (req, res) => {
                         //delete method failed
                         return res.status(500)
                             .json({
-                                error: error.stack
+                                message: 'Erreur interne, veuillez retenter ultérieurement. (code 500)'
                             });
                     });
             });
@@ -173,7 +173,7 @@ exports.deletePicture = (req, res) => {
             //findOne method failed
             return res.status(500)
                 .json({
-                    error: error.stack
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                 });
         });
 };
@@ -186,7 +186,7 @@ exports.getAllPictures = (req, res) => {
             if (!foundPictures) {
                 return res.status(404)
                     .json({
-                        message: 'No picture to show !'
+                        message: "Aucune photo à afficher. (Code 404)"
                     });
             }
             return res.status(200)
@@ -195,7 +195,7 @@ exports.getAllPictures = (req, res) => {
         .catch((error) => {
             return res.status(500)
                 .json({
-                    error: error.stack
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                 });
         });
 };
@@ -212,7 +212,7 @@ exports.getOnePicture = (req, res) => {
             if (!foundPicture) {
                 return res.status(404)
                     .json({
-                        message: 'No picture found !'
+                        message: "La photo n'a pas pu être trouvée. (Code 404)"
                     });
             }
             return res.status(200)
@@ -222,7 +222,7 @@ exports.getOnePicture = (req, res) => {
             //findOne method failed
             return res.status(500)
                 .json({
-                    error: error.stack
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                 });
         });
 };
