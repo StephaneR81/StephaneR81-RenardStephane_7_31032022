@@ -15,4 +15,10 @@ export class LoginService {
     const body = JSON.stringify(user);
     return this.http.post<Login>(this._url, body, { headers: headers });
   }
+
+  logout(): void {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+  }
 }

@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   public formErrorMessage: string = 'Champ requis ou erroné';
   private dataToPost!: Login;
   public response!: any;
+  public returnUrl!: string;
 
   constructor(
     private loginService: LoginService,
@@ -24,6 +25,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.returnUrl = '/dashboard';
+    this.loginService.logout();
   }
 
   //Function initForm()
@@ -60,6 +63,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+
     //Set the dataToPost object containing the body of the POST request
     this.dataToPost = { ...this.loginForm.value };
 
@@ -68,6 +72,9 @@ export class LoginComponent implements OnInit {
       next: (data) => {
         console.log('NEXT ', data);
         this.response = data.message;
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('userId', data.userId);
         this.router.navigateByUrl('/wall');
       },
       error: (error) => {
