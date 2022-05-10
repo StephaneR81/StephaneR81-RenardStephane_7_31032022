@@ -26,10 +26,6 @@ module.exports = (sequelize, Sequelize) => {
         },
         email: {
             type: Sequelize.STRING,
-            unique: {
-                args: true,
-                msg: "L'adresse E-mail est déjà utilisée"
-            },
             allowNull: false,
             validate: {
                 isEmail: {
@@ -44,7 +40,10 @@ module.exports = (sequelize, Sequelize) => {
                     args: [8, 30],
                     msg: "L'E-mail doit être compris entre 6 et 30 caractères"
                 }
-
+            },
+            unique: {
+                args: true,
+                msg: "L'adresse E-mail est déjà utilisée"
             }
         },
         password: {

@@ -17,33 +17,59 @@ exports.signup = (req, res) => {
         ...req.body
     };
 
-    //Checks if first account exists at least
-    User.findAll({
-            attributes: ['email']
+    //If the email address already exists
+    User.findOne({
+            attributes: ['email'],
+            where: {
+                email: req.body.email
+            }
         })
-        .then((existingUser) => {
+        .then((doubleEmail) => {
 
-            //If it is the first account, it is an ADMIN account.
-            if (Object.keys(existingUser).length === 0) {
-                newUser.isAdmin = true;
+            if (doubleEmail) {
+                return res.status(401)
+                    .json({
+                        message: "L'adresse E-mail est déjà utilisée. (Code 401)"
+                    });
             }
 
-            //Creates a hash for the entered password with 10 salt rounds
-            bcrypt.hash(req.body.password, 10)
-                .then((hash) => {
-                    newUser.password = hash;
+            //Checks if first account exists at least
 
-                    //Registering the new user in the database
-                    User.create(newUser)
-                        .then((data) => {
-                            return res.status(201)
-                                .json({
-                                    message: 'Nouvel utilisateur enregistré avec succès. (Code 201)'
+            User.findAll({
+                    attributes: ['email']
+                })
+                .then((existingUser) => {
+
+                    //If it is the first account, it is an ADMIN account.
+                    if (Object.keys(existingUser).length === 0) {
+                        newUser.isAdmin = true;
+                    }
+
+                    //Creates a hash for the entered password with 10 salt rounds
+                    bcrypt.hash(req.body.password, 10)
+                        .then((hash) => {
+                            newUser.password = hash;
+
+                            //Registering the new user in the database
+                            User.create(newUser)
+                                .then((data) => {
+                                    return res.status(201)
+                                        .json({
+                                            message: 'Nouvel utilisateur enregistré avec succès. (Code 201)'
+                                        });
+                                })
+
+                                .catch((error) => {
+                                    //Create method failed
+                                    return res.status(500)
+                                        .json({
+                                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                                        });
                                 });
                         })
 
                         .catch((error) => {
-                            //Create method failed
+                            //Bcrypt method failed
                             return res.status(500)
                                 .json({
                                     message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
@@ -52,22 +78,22 @@ exports.signup = (req, res) => {
                 })
 
                 .catch((error) => {
-                    //Bcrypt method failed
+                    //findAll method failed
                     return res.status(500)
                         .json({
                             message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
                         });
                 });
         })
-
         .catch((error) => {
-            //findAll method failed
+            //FindOne method failed
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)' + error
                 });
         });
 };
+
 
 
 

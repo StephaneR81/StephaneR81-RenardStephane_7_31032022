@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
     //Call to the Login service for connecting the user
     this.loginService.connectUser(this.dataToPost).subscribe({
       next: (data) => {
-        console.log('NEXT ', data);
+        // console.log('NEXT ', data);
         this.response = data.message;
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('token', data.token);
@@ -78,10 +78,10 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/wall');
       },
       error: (error) => {
-        console.log('ERROR ', error);
+        // console.log('ERROR ', error);
         this.response = error.error.message;
       },
     });
-    console.log('RESPONSE => ', this.response);
+    // console.log('RESPONSE => ', this.response);
   }
 }
