@@ -21,4 +21,10 @@ export class LoginService {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
   }
+
+  //Get token from storage
+  getTokenFromStorage(): string | null {
+    const token = localStorage.getItem('token');
+    return token;
+  }
 }

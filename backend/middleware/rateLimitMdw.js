@@ -4,7 +4,7 @@ const rateLimit = require('express-rate-limit');
 
 module.exports = rateLimit({
     windowMs: 10 * 60 * 1000,
-    max: 3,
+    max: 5,
     handler: (req, res) => {
         return res.status(429)
             .json({

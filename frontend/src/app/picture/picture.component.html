@@ -3,17 +3,18 @@
 
   <!-- Picture card -->
   <section class="card">
-    <article>
+    <article *ngFor="let element of picture">
       <figure>
-        <img src="https://picsum.photos/200/300" alt="Photo postée par un membre">
+        <img [src]="element.url" alt="Photo postée par un membre">
         <figcaption>
-          <h3>Titre de la photo 1</h3>
-          <p>Par Stéphane, <br />03/05/2022 à 18:07</p>
-          <p>Dernière activité 03/05/2022 18:25</p>
+          <h3>{{ element.title }}</h3>
+          <p>Par {{ element.user.name }}, <br />{{ element.updatedAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2'}}</p>
+          <p>Dernière activité {{ lastActivity | date: "dd/MM/YYYY à HH:mm" : 'GMT+2' }}</p>
         </figcaption>
       </figure>
     </article>
   </section>
+
 
   <!-- Comment formular with textarea -->
   <section class="formular">
@@ -28,18 +29,14 @@
     </form>
   </section>
 
+
   <!-- Comment card sample -->
   <section class="comments">
     <h3>Commentaires des utilisateurs</h3>
-    <article>
-      <p class="commentDate">Stéphane, le 03/05/2022 à 18:27</p>
-      <p class="commentContent">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-        has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-        and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-        PageMaker including versions of Lorem Ipsum.</p>
+    <article *ngFor="let comment of pictureComments; let in = index">
+      <p class="commentDate">Envoyé par <b>{{ comment.user.name }}</b>, le
+        {{comment.createdAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2'}}</p>
+      <p class="commentContent">{{comment.comment}}</p>
     </article>
   </section>
-
 </main>

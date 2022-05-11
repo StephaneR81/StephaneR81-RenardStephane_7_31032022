@@ -1,8 +1,14 @@
 //Imports
+
 const fs = require('fs');
+const {
+    REPL_MODE_SLOPPY
+} = require('repl');
 
 const db = require('../models');
 const Picture = db.pictures;
+const Comment = db.comments;
+const User = db.users;
 const {
     Sequelize,
     pictures
@@ -181,8 +187,14 @@ exports.deletePicture = (req, res) => {
 
 //Get all pictures
 exports.getAllPictures = (req, res) => {
-    Picture.findAll()
+    Picture.findAll({
+            include: {
+                model: User,
+                attributes: ['name']
+            }
+        })
         .then((foundPictures) => {
+            // console.log('foundPictures => ', foundPictures);
             if (!foundPictures) {
                 return res.status(404)
                     .json({
@@ -195,7 +207,7 @@ exports.getAllPictures = (req, res) => {
         .catch((error) => {
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)' + error
                 });
         });
 };
@@ -206,7 +218,16 @@ exports.getOnePicture = (req, res) => {
     Picture.findOne({
             where: {
                 id: req.params.id
-            }
+            },
+            include: [{
+                model: Comment,
+                as: 'comments'
+            }, {
+                model: User,
+                as: 'user',
+                attributes: ['name']
+            }]
+
         })
         .then((foundPicture) => {
             if (!foundPicture) {
@@ -215,6 +236,7 @@ exports.getOnePicture = (req, res) => {
                         message: "La photo n'a pas pu être trouvée. (Code 404)"
                     });
             }
+            console.log(foundPicture);
             return res.status(200)
                 .json(foundPicture);
         })

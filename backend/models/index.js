@@ -21,8 +21,14 @@ db.users = require('./user.model.js')(sequelize, Sequelize);
 db.pictures = require('./picture.model.js')(sequelize, Sequelize);
 db.comments = require('./comment.model.js')(sequelize, Sequelize);
 
-db.users.hasMany(db.comments);
+
 db.users.hasMany(db.pictures);
+db.pictures.belongsTo(db.users);
 db.pictures.hasMany(db.comments);
+db.comments.belongsTo(db.pictures);
+db.users.hasMany(db.comments);
+db.comments.belongsTo(db.users);
+
+
 
 module.exports = db;

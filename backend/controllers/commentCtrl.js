@@ -1,5 +1,6 @@
 const db = require('../models');
 const Comment = db.comments;
+const User = db.users;
 const {
     Sequelize,
     pictures
@@ -150,7 +151,17 @@ exports.delete = (req, res) => {
 
 //Get all the comments
 exports.getAll = (req, res) => {
-    Comment.findAll()
+    Comment.findAll({
+            where: {
+                pictureId: req.params.id
+            },
+            include: {
+                model: User,
+                as: 'user',
+                attributes: ['name']
+            },
+            order: [['createdAt', 'desc']]
+        })
         .then((foundComments) => {
             if (!foundComments) {
                 return res.status(404)

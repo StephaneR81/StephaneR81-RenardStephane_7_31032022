@@ -2,8 +2,8 @@
   <h2>Photos des membres</h2>
   <section class="main__wrapper">
 
-    <!-- Clickable wall card sample -->
-    <a href="#">
+    <!-- Clickable wall card template -->
+    <!-- <a href="#">
       <article>
         <figure>
           <img src="https://picsum.photos/200/300" alt="Photo postée par un membre">
@@ -14,29 +14,17 @@
           </figcaption>
         </figure>
       </article>
-    </a>
+    </a> -->
 
-    <a href="#">
+    <a href="#" [routerLink]="['/pictures', picture.id]"  *ngFor="let picture of this.pictures">
       <article>
         <figure>
-          <img src="https://picsum.photos/200/300" alt="Photo postée par un membre">
+          <img [src]="picture.url" alt="Photo postée par un membre">
           <figcaption>
-            <h3>Titre de la photo 1</h3>
-            <p>Postée par Stéphane, <br />le 3 mai 2022 à 18:07</p>
-            <p>Dernière activité 03/05/2022 18:25</p>
-          </figcaption>
-        </figure>
-      </article>
-    </a>
-
-    <a href="#">
-      <article>
-        <figure>
-          <img src="https://picsum.photos/200/300" alt="Photo postée par un membre">
-          <figcaption>
-            <h3>Titre de la photo 1</h3>
-            <p>Postée par Stéphane, <br />le 3 mai 2022 à 18:07</p>
-            <p>Dernière activité 03/05/2022 18:25</p>
+            <h3>{{ picture.title }}</h3>
+            <p>Postée par <b>{{ picture.user.name }}</b> <br />{{ picture.createdAt | date: "dd/MM/YYYY à hh:mm"}}
+            </p>
+            <!-- <p><i>Dernière activité {{ picture.createdAt | date: "dd/MM/YYYY à hh:mm"}}</i></p> -->
           </figcaption>
         </figure>
       </article>
