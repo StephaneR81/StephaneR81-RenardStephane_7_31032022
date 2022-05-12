@@ -20,12 +20,12 @@ export class CommentService {
   }
 
   //Function for adding a new comment
-  addComment(auth_token: string, pictureId: string): Observable<any> {
+  addComment(auth_token: string, body: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${auth_token}`,
     });
     const requestOptions = { headers: headers };
-    return this.http.post(this._url, requestOptions);
+    return this.http.post(this._url, body, requestOptions);
   }
 }

@@ -8,26 +8,26 @@
         <img [src]="element.url" alt="Photo postée par un membre">
         <figcaption>
           <h3>{{ element.title }}</h3>
-          <p>Par <b>{{ element.user.name }}</b>, <br />{{ element.updatedAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2' }}</p>
+          <p>Par <b>{{ element.user.name }}</b>, <br />{{ element.updatedAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2' }}
+          </p>
         </figcaption>
       </figure>
     </article>
   </section>
 
-
   <!-- Comment formular with textarea -->
   <section class="formular">
-    <form action="#" id="commentForm">
+    <form novalidate [formGroup]="commentForm" (ngSubmit)="sendComment()" id="commentForm">
       <fieldset>
         <legend>Commenter cette photo</legend>
-        <textarea name="commentField" id="commentField" cols="25" rows="5" placeholder="Saisissez votre commentaire ici"
-          required></textarea>
-        <p id="commentError">Champ requis</p>
-        <button id="commentSubmit">Partager votre commentaire</button>
+        <textarea formControlName="comment" name="commentField" id="commentField" cols="25" rows="5"
+          placeholder="Saisissez votre commentaire ici (500 caractères maximum)" minlength="3" maxlength="500" required></textarea>
+        <p *ngIf="submitted && formControls['comment'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
+        <button type="submit" id="commentSubmit">Partager votre commentaire</button>
+        <p class="errorTextBox">{{ response }}</p>
       </fieldset>
     </form>
   </section>
-
 
   <!-- Comment card sample -->
   <section class="comments">
