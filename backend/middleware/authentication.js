@@ -7,13 +7,15 @@ module.exports = (req, res, next) => {
         const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET); //Decodes the token by using the secret key
         const userIdFromToken = decodedToken.userId.toString(); //Sets userIdFromToken to userId from decoded token
         const isAdmin = decodedToken.isAdmin;
+        
+        console.log('TOKEN ', token);
+
         req.auth = {
             userId: userIdFromToken,
             isAdmin: isAdmin
         };
 
         if (req.body.userId && req.body.userId !== userIdFromToken) {
-
             throw `Echec de l'authentification !`
         } else {
             next();

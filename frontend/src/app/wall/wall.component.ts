@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { PictureService } from '../services/picture.service';
 
@@ -10,30 +9,101 @@ import { PictureService } from '../services/picture.service';
   styleUrls: ['./wall.component.scss'],
 })
 export class WallComponent implements OnInit {
+  public pictureForm!: any;
+  public submitted: boolean = false;
+  public formErrorMessage: string = 'Champ requis ou erroné';
+  public noPictureMsg: string = '';
+  public response!: any;
   public pictures!: any;
+  private userToken!: any;
+  private userId!: any;
   constructor(
     private pictureService: PictureService,
-    private http: HttpClient,
-    private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
+    this.userToken = this.loginService.getTokenFromStorage();
+    this.userId = this.loginService.getUserIdFromStorage();
+    this.initForm();
     this.getAllPictures();
+  }
+
+  //Function initForm()
+  initForm() {
+    this.pictureForm = this.formBuilder.group({
+      title: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(30),
+        ]),
+      ],
+      file: ['', Validators.compose([Validators.required])],
+    });
+  }
+
+  //Return form controls
+  get formControls() {
+    return this.pictureForm.controls;
+  }
+
+  //File change event
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.pictureForm.patchValue({
+        file,
+      });
+    }
+  }
+
+  //Function for sending a new picture
+  sendPicture() {
+    this.submitted = true;
+    if (this.pictureForm.invalid) {
+      return;
+    }
+
+    const body: any = {
+      userId: this.userId,
+      title: this.pictureForm.get('title').value,
+    };
+
+    const formData: FormData = new FormData();
+    const file: any = this.pictureForm.get('file').value;
+    formData.append('image', file);
+    formData.append('picture', JSON.stringify(body));
+
+    this.pictureService.postOnePicture(this.userToken, formData).subscribe({
+      next: (data) => {
+        this.response = data.message;
+        this.getAllPictures();
+      },
+      error: (error) => {
+        this.response = error.error.message;
+      },
+    });
+    this.submitted = false;
+    this.pictureForm.reset();
   }
 
   //Function that request all pictures from PictureService
   getAllPictures() {
-    const token = this.loginService.getTokenFromStorage();
-    if (token !== null) {
-      this.pictureService.getAllPictures(token).subscribe({
+    if (this.userToken !== null) {
+      this.pictureService.getAllPictures(this.userToken).subscribe({
         next: (data) => {
-          console.log('PICTURES DATA ', data);
+          this.noPictureMsg = '';
           this.pictures = data;
-          console.log(this.pictures);
         },
         error: (error) => {
-          console.log('PICTURES ERROR ', error);
+          if (error.status === 404) {
+            this.noPictureMsg = "Il n'y a pas encore de photo à afficher !";
+          } else {
+            this.noPictureMsg = '';
+          }
         },
       });
     }

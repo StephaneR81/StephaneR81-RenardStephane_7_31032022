@@ -8,8 +8,7 @@
         <img [src]="element.url" alt="Photo postée par un membre">
         <figcaption>
           <h3>{{ element.title }}</h3>
-          <p>Par {{ element.user.name }}, <br />{{ element.updatedAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2'}}</p>
-          <p>Dernière activité {{ lastActivity | date: "dd/MM/YYYY à HH:mm" : 'GMT+2' }}</p>
+          <p>Par <b>{{ element.user.name }}</b>, <br />{{ element.updatedAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2' }}</p>
         </figcaption>
       </figure>
     </article>
@@ -35,7 +34,7 @@
     <h3>Commentaires des utilisateurs</h3>
     <article *ngFor="let comment of pictureComments; let in = index">
       <p class="commentDate">Envoyé par <b>{{ comment.user.name }}</b>, le
-        {{comment.createdAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2'}}</p>
+        {{comment.createdAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2' }}</p>
       <p class="commentContent">{{comment.comment}}</p>
     </article>
   </section>

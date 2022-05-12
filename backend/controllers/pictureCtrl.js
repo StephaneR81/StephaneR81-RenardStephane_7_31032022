@@ -191,11 +191,12 @@ exports.getAllPictures = (req, res) => {
             include: {
                 model: User,
                 attributes: ['name']
-            }
+            },
+            order: [['createdAt', 'desc']]
         })
         .then((foundPictures) => {
-            // console.log('foundPictures => ', foundPictures);
-            if (!foundPictures) {
+            console.log('foundPictures => ', foundPictures);
+            if (foundPictures.length === 0) {
                 return res.status(404)
                     .json({
                         message: "Aucune photo à afficher. (Code 404)"

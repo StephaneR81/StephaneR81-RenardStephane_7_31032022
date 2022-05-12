@@ -13,17 +13,18 @@ import { PictureService } from '../services/picture.service';
 export class PictureComponent implements OnInit {
   public picture: any[] = [];
   public pictureComments!: any;
-  public lastActivity!: Date;
+  private userToken!: any;
+  private userId!: any;
   constructor(
     private commentService: CommentService,
     private activatedRoute: ActivatedRoute,
     private loginService: LoginService,
     private pictureService: PictureService,
-    private router: Router,
-    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
+    this.userToken = this.loginService.getTokenFromStorage();
+    this.userId = this.loginService.getUserIdFromStorage();
     this.getOnePicture();
     this.getCommentsOfPicture();
   }
@@ -36,11 +37,8 @@ export class PictureComponent implements OnInit {
       this.pictureService.getOnePicture(token, pictureId).subscribe({
         next: (data) => {
           this.picture.push(data);
-          console.log('ONE PICTURE DATA ', data);
         },
-        error: (error) => {
-          console.log('ONE PICTURE ERROR ', error);
-        },
+        error: (error) => {},
       });
     }
   }
@@ -53,12 +51,8 @@ export class PictureComponent implements OnInit {
       this.commentService.getCommentsOfPicture(token, pictureId).subscribe({
         next: (data) => {
           this.pictureComments = data;
-          this.lastActivity = this.pictureComments[0].updatedAt;
-          console.log('ONE PICTURE COMMENTS DATA ', data);
         },
-        error: (error) => {
-          console.log('ONE PICTURE COMMENTS ERROR ', error);
-        },
+        error: (error) => {},
       });
     }
   }

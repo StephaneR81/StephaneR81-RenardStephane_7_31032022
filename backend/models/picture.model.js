@@ -12,8 +12,16 @@ module.exports = (sequelize, Sequelize) => {
         title: {
             type: Sequelize.STRING,
             allowNull: false,
-            isAlphanumeric: true,
-            notEmpty: true
+            validate: {
+                notEmpty: {
+                    args: true,
+                    msg: "Le titre est requis"
+                },
+                len: {
+                    args: [3, 20],
+                    msg: "Le titre doit être compris entre 3 et 20 caractères"
+                }
+            }
         },
         url: {
             type: Sequelize.STRING,

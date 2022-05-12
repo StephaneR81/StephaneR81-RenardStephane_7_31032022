@@ -27,4 +27,10 @@ export class LoginService {
     const token = localStorage.getItem('token');
     return token;
   }
+
+    //Get token from storage
+    getUserIdFromStorage(): string | null {
+      const token = localStorage.getItem('userId');
+      return token;
+    }
 }
