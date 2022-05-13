@@ -20,6 +20,7 @@ export class PictureComponent implements OnInit {
   public submitted: boolean = false;
   public response!: any;
   public formErrorMessage: string = 'Champ requis ou erroné';
+  public userInfos: any = {};
   constructor(
     private commentService: CommentService,
     private activatedRoute: ActivatedRoute,
@@ -29,18 +30,33 @@ export class PictureComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.initForm();
     this.pictureId = this.activatedRoute.snapshot.params['id'];
     this.userToken = this.loginService.getTokenFromStorage();
     this.userId = this.loginService.getUserIdFromStorage();
     this.getOnePicture();
     this.getCommentsOfPicture();
+    this.getUserInfos();
   }
 
   //Get form controls
   get formControls() {
     return this.commentForm.controls;
   }
+
+    //Get user informations
+    getUserInfos() {
+      this.loginService.getUserDetails(this.userToken, this.userId).subscribe({
+        next: (data) => {
+          this.userInfos = data.user;
+          this.response = data.message;
+        },
+        error: (error) => {
+          this.response = error.message;
+        },
+      });
+    }
 
   //Function initForm()
   initForm() {

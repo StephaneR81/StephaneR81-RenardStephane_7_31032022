@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
   get formControls() {
     return this.profileForm.controls;
   }
+  
   //Get user informations
   getUserInfos() {
     this.loginService.getUserDetails(this.userToken, this.userId).subscribe({
