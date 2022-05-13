@@ -7,22 +7,51 @@ main {
   align-items: center;
 
   .pictureForm {
+    width: 100%;
 
-    // legend{}
+    legend {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
     form {
-      padding: 10px;
+      width: 100%;
+      padding: 1px;
     }
 
     label {
-      margin: 10px 0;
+      padding: 5px;
+    }
+
+    .labelFile {
+      width: fit-content;
+      margin: 0;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 50px;
+      text-align: center;
+      background-color: $lightBlue;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: darken($lightBlue, 10);
+        cursor: pointer;
+      }
+    }
+
+    .labelText {
+      // font-size: 17px;
+      font-weight: bold;
     }
 
     input[type="text"] {
       min-height: 40px;
-      margin-top: 15px;
+      margin-top: 5px;
+      margin-bottom: 20px;
+      padding: 0 5px;
       border: none;
       border-bottom: 1px solid $black;
-      background-color: $gray;
+      background-color: $lightBlue;
       font-size: 17px;
 
       &:focus {
@@ -31,7 +60,13 @@ main {
     }
 
     input[type="file"] {
-      margin: 10px 0;
+      display: none;
+    }
+
+    p {
+      margin-top: 10px;
+      margin-bottom: 40px;
+      text-align: center;
     }
 
     .errorFormMessage,
@@ -45,11 +80,11 @@ main {
     fieldset {
       display: flex;
       flex-flow: column nowrap;
+      align-items: center;
       margin: 0;
     }
 
     button {
-      // align-self: center;
       width: fit-content;
       margin: 10px 0;
       padding: 15px;
@@ -96,6 +131,7 @@ main {
 
           img {
             width: 100%;
+            height: 200px;
             object-fit: cover;
           }
 
@@ -122,25 +158,74 @@ main {
 
 //Media query for tablet
 @media screen and (min-width: 768px) and (max-width: 1023px) {
+  main {
+    max-width: 70%;
+    margin: 0 auto;
 
-  form {
-    width: 100%;
-  }
+    .main__wrapper {
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      border: 1px solid $darkGray;
+      padding: 15px;
+      margin-bottom: 20px;
 
-  fieldset {
-    width: 100%;
-    align-items: flex-start;
+      a {
+        width: 100%;
+      }
+    }
 
-  }
+    form {
+      width: 100%;
+    }
 
-  .pictureForm {
-    width: 100%;
-  }
+    fieldset {
+      display: flex;
+      flex-flow: column nowrap;
+      width: 100%;
+      align-items: center;
+    }
 
-  button {
-    align-self: baseline;
+    .pictureForm {
+      width: 100%;
+    }
+
   }
 }
 
 //Media query for Desktop
-@media screen and (min-width: 1024px) {}
+@media screen and (min-width: 1024px) {
+  main {
+    max-width: 40%;
+    margin: 0 auto;
+
+    .main__wrapper {
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      border: 1px solid $darkGray;
+      padding: 15px;
+      margin-bottom: 20px;
+
+      a {
+        width: 100%;
+      }
+    }
+    form {
+      width: 100%;
+    }
+
+    fieldset {
+      display: flex;
+      flex-flow: column nowrap;
+      width: 100%;
+      align-items: center;
+    }
+
+    .pictureForm {
+      width: 100%;
+    }
+  }
+}

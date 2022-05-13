@@ -121,7 +121,37 @@ main {
     article {
       padding: 10px;
 
+      .commentWrapper {
+        display: flex;
+        flex-flow: row nowrap;
+        background-color: $gray;
+        border: 1px solid $darkGray;
+
+        .deleteComment {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 46px;
+          padding: 5px;
+          border: 2px solid $darkGray;
+          border-left: none;
+          background-color: lighten($lightRed, 15);
+          transition: all 0.3s;
+
+          &:hover {
+            background-color: lighten($lightRed, 5);
+            // border-radius: 50px;
+            cursor: pointer;
+          }
+        }
+
+        p {
+          width: 100%;
+        }
+      }
+
       p {
+        width: auto;
         margin: 0;
         padding: 5px;
       }
@@ -148,7 +178,8 @@ main {
 //Media query for tablet
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   main {
-
+    max-width: 70%;
+    margin: 0 auto;
     // h2 {}
 
     .card {
@@ -189,13 +220,12 @@ main {
 //Media query for desktop
 @media screen and (min-width: 1024px) {
   main {
-    margin: 0 30%;
+    max-width: 40%;
+    margin: 0 auto;
 
-    .formular {
+    // .formular {
 
-      form {
-        // padding: 0;
-      }
-    }
+    //   form {}
+    // }
   }
 }

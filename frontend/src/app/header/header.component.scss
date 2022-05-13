@@ -67,7 +67,8 @@ header {
 //Media query for tablet
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   header {
-    max-width: 100%;
+    max-width: 70%;
+    margin: 0 auto;
 
     nav {
       ul {
@@ -85,16 +86,8 @@ header {
 //Media query for desktop
 @media screen and (min-width: 1024px) {
   header {
-
-    .header__logo__wrapper {
-      img {
-        width: 450px;
-      }
-    }
-
-    h1 {
-      font-size: 25px;
-    }
+    max-width: 40%;
+    margin: 0 auto;
 
     nav {
       ul {

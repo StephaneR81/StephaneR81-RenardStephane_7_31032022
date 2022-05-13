@@ -10,8 +10,8 @@
     <ul>
       <li *ngIf="!isLoggedIn()"><a [routerLink]="['/register']">Inscription</a></li>
       <li *ngIf="!isLoggedIn()"><a [routerLink]="['/login']">Connexion</a></li>
-      <li *ngIf="isLoggedIn()"><a [routerLink]="['/profile']">Profil</a></li>
       <li *ngIf="isLoggedIn()"><a [routerLink]="['/wall']">Photos</a></li>
+      <li *ngIf="isLoggedIn()"><a [routerLink]="['/profile']">Profil</a></li>
       <li *ngIf="isLoggedIn()"><a [routerLink]="['/login']" (click)="logout()">Déconnexion</a></li>
 
     </ul>

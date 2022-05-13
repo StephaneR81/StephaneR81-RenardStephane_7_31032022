@@ -4,11 +4,13 @@
       <fieldset>
         <legend>Poster une photo</legend>
 
-        <label for="fileField">Sélectionnez un fichier</label>
+        <label for="fileField" class="labelFile">Sélectionnez un fichier</label>
         <input (change)="onFileChange($event)" id="fileField" type="file" name="fileField" required>
+        <p *ngIf="!selectedFile">Aucun fichier sélectionné</p>
+        <p *ngIf="selectedFile">Fichier : {{selectedFile}}</p>
         <p *ngIf="submitted && formControls['file'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
 
-        <label for="titleField">Titre de la photo</label>
+        <label class="labelText" for="titleField">Titre de la photo</label>
         <input formControlName="title" id="titleField" type="text" placeholder="Indiquez le titre de la photo"
           minlength="3" maxlength="20">
         <p *ngIf="submitted && formControls['title'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>

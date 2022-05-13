@@ -15,7 +15,7 @@ export class PictureComponent implements OnInit {
   public pictureComments!: any;
   private pictureId!: string;
   private userToken!: any;
-  private userId!: any;
+  public userId!: any;
   public commentForm!: FormGroup;
   public submitted: boolean = false;
   public response!: any;
@@ -111,5 +111,18 @@ export class PictureComponent implements OnInit {
           this.response = error.error.message;
         },
       });
+  }
+
+  //Delete a comment
+  deleteComment(commentId: string) {
+    this.commentService.deleteComment(this.userToken, commentId).subscribe({
+      next: (data) => {
+        this.response = data.message;
+        this.getCommentsOfPicture();
+      },
+      error: (error) => {
+        this.response = error.message;
+      },
+    });
   }
 }

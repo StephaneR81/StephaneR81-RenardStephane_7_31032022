@@ -20,7 +20,7 @@
         minlength="1" maxlength="50" required>
       <p *ngIf="submitted && formControls['password'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
 
-      <button type="submit">Enregistrer</button>
+      <button type="submit" id="submitBtn">Enregistrer</button>
       <p class="errorTextBox">{{ response }}</p>
     </fieldset>
   </form>

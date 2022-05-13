@@ -28,4 +28,14 @@ export class CommentService {
     const requestOptions = { headers: headers };
     return this.http.post(this._url, body, requestOptions);
   }
+
+  //Function to delete a comment
+  deleteComment(auth_token: string, commentId: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth_token}`,
+    });
+    const requestOptions = { headers: headers };
+    return this.http.delete(this._url + '/' + commentId, requestOptions);
+  }
 }

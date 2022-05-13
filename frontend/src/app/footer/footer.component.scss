@@ -5,9 +5,6 @@ footer {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  width: 100%;
-  height: 50px;
-  margin: 50px 0 0 0;
   border-top: 1px solid $darkGray;
 
   .footer__copyright {
@@ -20,7 +17,11 @@ footer {
 }
 
 //Media query for tablet
-@media screen and (min-width: 768px) and (max-width: 1023px) {}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  // footer {}
+}
 
 //Media query for desktop
-@media screen and (min-width: 1024px) {}
+@media screen and (min-width: 1024px) {
+  // footer {}
+}

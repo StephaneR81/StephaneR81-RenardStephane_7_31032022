@@ -21,7 +21,8 @@
       <fieldset>
         <legend>Commenter cette photo</legend>
         <textarea formControlName="comment" name="commentField" id="commentField" cols="25" rows="5"
-          placeholder="Saisissez votre commentaire ici (500 caractères maximum)" minlength="3" maxlength="500" required></textarea>
+          placeholder="Saisissez votre commentaire ici (500 caractères maximum)" minlength="3" maxlength="500"
+          required></textarea>
         <p *ngIf="submitted && formControls['comment'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
         <button type="submit" id="commentSubmit">Partager votre commentaire</button>
         <p class="errorTextBox">{{ response }}</p>
@@ -33,8 +34,15 @@
   <section class="comments">
     <h3>Commentaires des utilisateurs</h3>
     <article *ngFor="let comment of pictureComments">
-      <p class="commentDate">Envoyé par <b>{{ comment.user.name }}</b><br />le
-        {{comment.createdAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2' }}&nbsp;&nbsp;&nbsp;[ X Supprimer]</p>
+      <div class="commentWrapper">
+        <p class="commentDate">Envoyé par <b>{{ comment.user.name }}</b><br />le
+          {{comment.createdAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2' }}</p>
+        <div *ngIf="comment.userId == userId" class="deleteComment">
+          <p (click)="deleteComment(comment.id)">&#10060;</p>
+        </div>
+      </div>
+
+
       <p class="commentContent">{{comment.comment}}</p>
     </article>
   </section>

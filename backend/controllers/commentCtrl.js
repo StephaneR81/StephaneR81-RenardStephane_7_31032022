@@ -89,7 +89,11 @@ exports.modify = (req, res) => {
 
 //Delete a comment
 exports.delete = (req, res) => {
-    Comment.findOne()
+    Comment.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
         .then((foundComment) => {
             if (!foundComment) {
                 return res.status(404)
@@ -98,7 +102,7 @@ exports.delete = (req, res) => {
                     });
             }
 
-            //Check if the sender is an Administrator or the owner of the comment
+            //Check if the sender is authenticated and is an Administrator or the owner of the comment
             if (!req.auth.isAdmin && req.auth.userId !== String(foundComment.userId)) {
                 return res.status(403)
                     .json({

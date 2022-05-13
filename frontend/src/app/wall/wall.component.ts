@@ -17,6 +17,7 @@ export class WallComponent implements OnInit {
   public pictures!: any;
   private userToken!: any;
   private userId!: any;
+  public selectedFile!: string;
   constructor(
     private pictureService: PictureService,
     private loginService: LoginService,
@@ -54,6 +55,8 @@ export class WallComponent implements OnInit {
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      this.selectedFile = file.name;
+      console.log(this.selectedFile);
       this.pictureForm.patchValue({
         file,
       });
