@@ -7,8 +7,6 @@ module.exports = (req, res, next) => {
         const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET); //Decodes the token by using the secret key
         const userIdFromToken = decodedToken.userId.toString(); //Sets userIdFromToken to userId from decoded token
         const isAdmin = decodedToken.isAdmin;
-        
-        console.log('TOKEN ', token);
 
         req.auth = {
             userId: userIdFromToken,
@@ -21,8 +19,8 @@ module.exports = (req, res, next) => {
             next();
         }
     } catch (error) {
-        res.status(401).json({
-            error
+        return res.status(401).json({
+            error: error
         });
     }
 };

@@ -45,8 +45,6 @@ exports.addPicture = (req, res) => {
         });
 };
 
-
-
 //MODIFY A PICTURE
 exports.modifyPicture = (req, res) => {
     Picture.findOne({
@@ -116,7 +114,6 @@ exports.modifyPicture = (req, res) => {
         });
 };
 
-
 //Delete one picture
 exports.deletePicture = (req, res) => {
     Picture.findOne({
@@ -184,7 +181,6 @@ exports.deletePicture = (req, res) => {
         });
 };
 
-
 //Get all pictures
 exports.getAllPictures = (req, res) => {
     Picture.findAll({
@@ -192,10 +188,11 @@ exports.getAllPictures = (req, res) => {
                 model: User,
                 attributes: ['name']
             },
-            order: [['createdAt', 'desc']]
+            order: [
+                ['createdAt', 'desc']
+            ]
         })
         .then((foundPictures) => {
-            console.log('foundPictures => ', foundPictures);
             if (foundPictures.length === 0) {
                 return res.status(404)
                     .json({
@@ -212,7 +209,6 @@ exports.getAllPictures = (req, res) => {
                 });
         });
 };
-
 
 //Get one picture
 exports.getOnePicture = (req, res) => {
@@ -237,7 +233,6 @@ exports.getOnePicture = (req, res) => {
                         message: "La photo n'a pas pu être trouvée. (Code 404)"
                     });
             }
-            console.log(foundPicture);
             return res.status(200)
                 .json(foundPicture);
         })

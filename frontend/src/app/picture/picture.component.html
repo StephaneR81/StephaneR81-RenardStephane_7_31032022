@@ -32,9 +32,9 @@
   <!-- Comment card sample -->
   <section class="comments">
     <h3>Commentaires des utilisateurs</h3>
-    <article *ngFor="let comment of pictureComments; let in = index">
-      <p class="commentDate">Envoyé par <b>{{ comment.user.name }}</b>, le
-        {{comment.createdAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2' }}</p>
+    <article *ngFor="let comment of pictureComments">
+      <p class="commentDate">Envoyé par <b>{{ comment.user.name }}</b><br />le
+        {{comment.createdAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2' }}&nbsp;&nbsp;&nbsp;[ X Supprimer]</p>
       <p class="commentContent">{{comment.comment}}</p>
     </article>
   </section>

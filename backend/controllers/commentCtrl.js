@@ -28,8 +28,6 @@ exports.create = (req, res) => {
         });
 };
 
-
-
 //Modify a comment
 exports.modify = (req, res) => {
 
@@ -89,8 +87,6 @@ exports.modify = (req, res) => {
         });
 };
 
-
-
 //Delete a comment
 exports.delete = (req, res) => {
     Comment.findOne()
@@ -147,8 +143,6 @@ exports.delete = (req, res) => {
         });
 };
 
-
-
 //Get all the comments
 exports.getAll = (req, res) => {
     Comment.findAll({
@@ -160,7 +154,9 @@ exports.getAll = (req, res) => {
                 as: 'user',
                 attributes: ['name']
             },
-            order: [['createdAt', 'desc']]
+            order: [
+                ['createdAt', 'desc']
+            ]
         })
         .then((foundComments) => {
             if (!foundComments) {
@@ -180,8 +176,6 @@ exports.getAll = (req, res) => {
                 });
         });
 };
-
-
 
 //Get one comment
 exports.getOne = (req, res) => {

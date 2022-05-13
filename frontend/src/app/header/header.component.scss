@@ -29,7 +29,7 @@ header {
 
     ul {
       display: flex;
-      flex-flow: row nowrap;
+      flex-flow: column nowrap;
       justify-content: center;
       width: 100%;
       padding-left: 0;
@@ -38,6 +38,8 @@ header {
       li {
         min-width: 50%;
         text-align: center;
+        border: 1px solid $darkGray;
+        border-bottom: none;
 
         a {
           display: block;
@@ -63,7 +65,22 @@ header {
 }
 
 //Media query for tablet
-@media screen and (min-width: 768px) and (max-width: 1023px) {}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  header {
+    max-width: 100%;
+
+    nav {
+      ul {
+        flex-flow: row nowrap;
+
+        li {
+          min-width: auto;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
 
 //Media query for desktop
 @media screen and (min-width: 1024px) {
@@ -77,6 +94,17 @@ header {
 
     h1 {
       font-size: 25px;
+    }
+
+    nav {
+      ul {
+        flex-flow: row nowrap;
+
+        li {
+          min-width: auto;
+          width: 100%;
+        }
+      }
     }
   }
 }

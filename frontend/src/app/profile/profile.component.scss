@@ -36,6 +36,14 @@ main {
         }
       }
 
+      .errorFormMessage,
+      .errorTextBox {
+        min-width: 20px;
+        margin: 5px 0;
+        font-size: 18px;
+        color: $lightRed;
+      }
+
       p {
         min-width: 20px;
         margin: 5px 0;
