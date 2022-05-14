@@ -12,6 +12,9 @@
           </p>
         </figcaption>
       </figure>
+      <div *ngIf="userId == element.userId || userInfos.isAdmin === true">
+        <button (click)="deletePicture(element.id)">Supprimer la photo</button>
+      </div>
     </article>
   </section>
 
@@ -25,7 +28,7 @@
           required></textarea>
         <p *ngIf="submitted && formControls['comment'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
         <button type="submit" id="commentSubmit">Partager votre commentaire</button>
-        <p class="errorTextBox">{{ response }}</p>
+        <p [ngStyle]="textBoxStyle" class="errorTextBox">{{ response }}</p>
       </fieldset>
     </form>
   </section>
@@ -33,12 +36,13 @@
   <!-- Comment card sample -->
   <section class="comments">
     <h3>Commentaires des utilisateurs</h3>
+    <p class="noComments" *ngIf="noComment">Il n'y a pas encore de commentaire à afficher !</p>
     <article *ngFor="let comment of pictureComments">
       <div class="commentWrapper">
         <p class="commentDate">Envoyé par <b>{{ comment.user.name }}</b><br />le
           {{comment.createdAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2' }}</p>
         <div *ngIf="comment.userId == userId || userInfos.isAdmin===true" class="deleteComment" title="Supprimer">
-          <p (click)="deleteComment(comment.id)">&#10060;</p>
+          <div class="divCross" (click)="deleteComment(comment.id)">&#10060;</div>
         </div>
       </div>
 

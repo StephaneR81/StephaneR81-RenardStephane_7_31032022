@@ -7,7 +7,8 @@ main {
   align-items: center;
 
   h2 {
-    font-size: 23px;
+    font-size: 25px;
+    color: $textH2;
   }
 
   .card {
@@ -15,20 +16,22 @@ main {
     flex-flow: column nowrap;
     align-items: center;
     width: 100%;
+    max-width: 300px;
     margin: 10px;
-    padding: 10px;
+    border: 1px solid $darkGray;
 
     article {
       display: flex;
+      flex-flow: column nowrap;
       justify-content: center;
+      align-items: center;
       width: 100%;
       margin-bottom: 20px;
       padding: 10px;
-      border: 1px solid $darkGray;
 
       figure {
+        width: 100%;
 
-        max-width: 300px;
         margin: 0;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
@@ -47,6 +50,8 @@ main {
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            font-size: 22px;
+            color: $textH2;
           }
 
           p {
@@ -55,6 +60,21 @@ main {
             white-space: nowrap;
             text-overflow: ellipsis;
           }
+        }
+      }
+
+      button {
+        align-self: center;
+        width: fit-content;
+        margin: 20px auto 10px auto;
+        padding: 15px;
+        border: none;
+        border-radius: 50px;
+        font-size: 18px;
+
+        &:hover {
+          background-color: $lightRed;
+          color: $white;
         }
       }
     }
@@ -70,6 +90,8 @@ main {
         display: flex;
         flex-flow: column nowrap;
         margin: 0;
+        font-weight: bold;
+        font-size: 18px;
 
         textarea {
           margin: 0;
@@ -117,21 +139,17 @@ main {
     h3 {
       text-align: center;
     }
-
+.noComments{
+  text-align: center;
+}
     article {
-      padding: 10px;
+      margin: 10px;
 
       .commentWrapper {
         display: flex;
         flex-flow: row nowrap;
-        background-color: $gray;
-        border: 1px solid $darkGray;
 
         .deleteComment {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 46px;
           padding: 5px;
           border: 2px solid $darkGray;
           border-left: none;
@@ -140,23 +158,27 @@ main {
 
           &:hover {
             background-color: lighten($lightRed, 5);
-            // border-radius: 50px;
             cursor: pointer;
           }
         }
 
-        p {
-          width: 100%;
+        .divCross {
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: center;
+          align-items: center;
+          height: 35px;
+          width: 35px;
         }
       }
 
       p {
-        width: auto;
         margin: 0;
         padding: 5px;
       }
 
       .commentDate {
+        width: 100%;
         margin-bottom: 0;
         padding: 5px;
         border: 1px solid $darkGray;
@@ -166,6 +188,7 @@ main {
       }
 
       .commentContent {
+        padding: 10px;
         border: 1px solid $darkGray;
         border-top: none;
         background-color: $lightGray;
@@ -180,26 +203,36 @@ main {
   main {
     max-width: 70%;
     margin: 0 auto;
-    // h2 {}
+
+    h2,
+    h3 {
+      color: $textH2;
+    }
 
     .card {
       display: flex;
       flex-flow: row nowrap;
       justify-content: center;
-      width: 80%;
-      max-width: none;
-      padding: 15px;
+      // max-width: 300px;
+      width: 70%;
+      padding: 0;
       border: 1px solid $darkGray;
 
       article {
-        max-width: 300px;
+        width: 100%;
         margin: 0;
         border: none;
+
+        figure {
+          img {
+            width: 100%;
+            object-fit: cover;
+          }
+        }
       }
     }
 
     .formular {
-      width: 80%;
       margin-bottom: 20px;
 
       form {
@@ -211,8 +244,6 @@ main {
       article {
         padding: 0;
       }
-
-      width: 80%;
     }
   }
 }
@@ -220,12 +251,7 @@ main {
 //Media query for desktop
 @media screen and (min-width: 1024px) {
   main {
-    max-width: 40%;
+    max-width: 55%;
     margin: 0 auto;
-
-    // .formular {
-
-    //   form {}
-    // }
   }
 }

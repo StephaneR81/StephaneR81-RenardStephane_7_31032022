@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   private dataToPost!: Login;
   public response!: any;
   public returnUrl!: string;
+  public textBoxStyle: any = { color: '#000' };
 
   constructor(
     private loginService: LoginService,
@@ -70,6 +71,7 @@ export class LoginComponent implements OnInit {
     //Call to the Login service for connecting the user
     this.loginService.connectUser(this.dataToPost).subscribe({
       next: (data) => {
+        this.textBoxStyle.color = 'green';
         this.response = data.message;
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('token', data.token);
@@ -77,6 +79,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/wall');
       },
       error: (error) => {
+        this.textBoxStyle.color = 'red';
         this.response = error.error.message;
       },
     });

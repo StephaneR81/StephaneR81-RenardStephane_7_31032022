@@ -12,7 +12,7 @@
         placeholder="Mot de passe (requis, 8 à 20 caractères)" minlength="8" maxlength="20" required>
       <p *ngIf="submitted && formControls['password'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
       <button type="submit">Me connecter</button>
-      <p class="errorTextBox">{{ response }}</p>
+      <p [ngStyle]="textBoxStyle" class="errorTextBox">{{ response }}</p>
     </fieldset>
   </form>
 </main>

@@ -18,6 +18,7 @@ export class WallComponent implements OnInit {
   private userToken!: any;
   private userId!: any;
   public selectedFile!: string;
+  public textBoxStyle: any = { color: '#000' };
   constructor(
     private pictureService: PictureService,
     private loginService: LoginService,
@@ -56,7 +57,6 @@ export class WallComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.selectedFile = file.name;
-      console.log(this.selectedFile);
       this.pictureForm.patchValue({
         file,
       });
@@ -82,10 +82,12 @@ export class WallComponent implements OnInit {
 
     this.pictureService.postOnePicture(this.userToken, formData).subscribe({
       next: (data) => {
+        this.textBoxStyle.color = 'green';
         this.response = data.message;
         this.getAllPictures();
       },
       error: (error) => {
+        this.textBoxStyle.color = 'red';
         this.response = error.error.message;
       },
     });

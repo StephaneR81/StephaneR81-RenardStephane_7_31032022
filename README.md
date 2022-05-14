@@ -1,6 +1,7 @@
-# GROUPOMANIA #
+# Projet 7 Groupomania | OpenClassRooms #
 
-## Installation backend ##
+
+## Backend installation ##
 
 Please have a ready to use MySQL server.
 
@@ -22,10 +23,22 @@ Then run `npm install` from backend folder. This should install the required dep
 - sequelize-cli 6.4.1
 - xss-clean 0.1.1
 
-## Usage ##
+### Usage ###
 
-Run either `node server` or `nodemon server` from backend folder. This should start the http server for the backend on port 3000.
+Run either `node server` or `nodemon server` from the backend folder. This should start the http server for the backend on port 3000.
 
 The app should reload automatically when you make a change to a file in case where you starts the server with `nodemon server`.
 
 Use `Ctrl+C` in the terminal to stop the local server.
+
+
+------------
+
+## Frontend Installation ##
+
+Please run `ng serve -o` from the frontend folder. This should start the http frontend server at http://localhost:4200 and automatically open it in your default Internet browser.
+
+The Angular server should reload automatically when you make a change to a file.
+
+Use `Ctrl+C` in the terminal to stop the local server.
+

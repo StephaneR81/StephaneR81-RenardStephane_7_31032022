@@ -5,6 +5,7 @@ main {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  width: 100%;
 
   .pictureForm {
     width: 100%;
@@ -17,6 +18,37 @@ main {
     form {
       width: 100%;
       padding: 1px;
+    }
+
+    .formCtrlWrapper {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      width: auto;
+
+      .divFile {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        background-color: $lightGray;
+        width: 100%;
+      }
+
+      .divTitle {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        background-color: $lightGray;
+        width: 100%;
+      }
+
+      .divSubmit {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        background-color: $lightGray;
+        width: 100%;
+      }
     }
 
     label {
@@ -40,7 +72,6 @@ main {
     }
 
     .labelText {
-      // font-size: 17px;
       font-weight: bold;
     }
 
@@ -49,9 +80,6 @@ main {
       margin-top: 5px;
       margin-bottom: 20px;
       padding: 0 5px;
-      border: none;
-      border-bottom: 1px solid $black;
-      background-color: $lightBlue;
       font-size: 17px;
 
       &:focus {
@@ -180,24 +208,25 @@ main {
       width: 100%;
     }
 
-    fieldset {
-      display: flex;
-      flex-flow: column nowrap;
-      width: 100%;
-      align-items: center;
-    }
-
-    .pictureForm {
-      width: 100%;
-    }
-
   }
+
+  fieldset {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    align-items: center;
+  }
+
+  .pictureForm {
+    width: 100%;
+  }
+
 }
 
 //Media query for Desktop
 @media screen and (min-width: 1024px) {
   main {
-    max-width: 40%;
+    max-width: 55%;
     margin: 0 auto;
 
     .main__wrapper {
@@ -213,6 +242,7 @@ main {
         width: 100%;
       }
     }
+
     form {
       width: 100%;
     }

@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   private userId!: any;
   public userInfos: any = {};
   private dialogBoxText: string = `Attention :\r\nLa suppression de votre compte engendrera la perte de vos photos et commentaires.\r\nVoulez-vous vraiment supprimer votre compte ?`;
+  public textBoxStyle: any = { color: '#000' };
 
   constructor(
     private registerService: RegisterService,
@@ -88,9 +89,11 @@ export class ProfileComponent implements OnInit {
     //Call to service to delete the account
     this.registerService.editProfile(this.userToken, body).subscribe({
       next: (data) => {
+        this.textBoxStyle.color = 'green';
         this.response = data.message;
       },
       error: (error) => {
+        this.textBoxStyle.color = 'red';
         this.response = error.message;
       },
     });
@@ -105,6 +108,7 @@ export class ProfileComponent implements OnInit {
 
     this.registerService.deleteAccount(this.userToken, userId).subscribe({
       next: (data) => {
+        this.textBoxStyle.color = 'green';
         this.response = data.message;
         //Logs the user out
         this.loginService.logout();
@@ -114,6 +118,7 @@ export class ProfileComponent implements OnInit {
         }, 3000);
       },
       error: (error) => {
+        this.textBoxStyle.color = 'red';
         this.response = error.message;
       },
     });

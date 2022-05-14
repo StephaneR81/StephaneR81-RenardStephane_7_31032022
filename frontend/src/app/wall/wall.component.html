@@ -3,20 +3,31 @@
     <form novalidate [formGroup]="pictureForm" (ngSubmit)="sendPicture()" enctype="multipart/form-data">
       <fieldset>
         <legend>Poster une photo</legend>
+        <div class="formCtrlWrapper">
 
-        <label for="fileField" class="labelFile">Sélectionnez un fichier</label>
-        <input (change)="onFileChange($event)" id="fileField" type="file" name="fileField" required>
-        <p *ngIf="!selectedFile">Aucun fichier sélectionné</p>
-        <p *ngIf="selectedFile">Fichier : {{selectedFile}}</p>
-        <p *ngIf="submitted && formControls['file'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
+          <div class="divFile">
+            <label for="fileField" class="labelFile">Sélectionnez un fichier</label>
+            <input (change)="onFileChange($event)" id="fileField" type="file" name="fileField" required>
+            <p *ngIf="!selectedFile">Aucun fichier sélectionné</p>
+            <p *ngIf="selectedFile">Fichier : {{selectedFile}}</p>
+            <p *ngIf="submitted && formControls['file'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
+          </div>
 
-        <label class="labelText" for="titleField">Titre de la photo</label>
-        <input formControlName="title" id="titleField" type="text" placeholder="Indiquez le titre de la photo"
-          minlength="3" maxlength="20">
-        <p *ngIf="submitted && formControls['title'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
+          <div class="divTitle">
+            <label class="labelText" for="titleField">Titre de la photo</label>
+            <input formControlName="title" id="titleField" type="text" placeholder="Indiquez le titre de la photo"
+              minlength="3" maxlength="20">
+            <p *ngIf="submitted && formControls['title'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
+          </div>
 
-        <button type="submit">Envoyer votre photo</button>
-        <p class="errorTextBox">{{ response }}</p>
+          <div class="divSubmit">
+            <button type="submit">Envoyer votre photo</button>
+            <p [ngStyle]="textBoxStyle" class="errorTextBox">{{ response }}</p>
+          </div>
+
+        </div>
+
+
       </fieldset>
     </form>
 

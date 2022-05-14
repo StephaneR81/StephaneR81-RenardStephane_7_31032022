@@ -21,7 +21,7 @@
       <p *ngIf="submitted && formControls['password'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
 
       <button type="submit" id="submitBtn">Enregistrer</button>
-      <p class="errorTextBox">{{ response }}</p>
+      <p [ngStyle]="textBoxStyle" class="errorTextBox">{{ response }}</p>
     </fieldset>
   </form>
   <div class="deleteAccount">

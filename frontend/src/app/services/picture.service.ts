@@ -40,12 +40,25 @@ export class PictureService {
   }
 
   //Function getting all comments for the picture
-  getAllCommentsFromPicture(auth_token: string, pictureId: string): Observable<any> {
+  getAllCommentsFromPicture(
+    auth_token: string,
+    pictureId: string
+  ): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${auth_token}`,
     });
     const requestOptions = { headers: headers };
     return this.http.get(this._url + '/comments/' + pictureId, requestOptions);
+  }
+
+  //Delete a picture
+  deletePicture(auth_token: string, pictureId: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth_token}`,
+    });
+    const requestOptions = { headers: headers };
+    return this.http.delete(this._url + '/' + pictureId, requestOptions);
   }
 }

@@ -21,16 +21,18 @@ export class PictureComponent implements OnInit {
   public response!: any;
   public formErrorMessage: string = 'Champ requis ou erroné';
   public userInfos: any = {};
+  public textBoxStyle: any = { color: '#000' };
+  public noComment: boolean = true;
   constructor(
     private commentService: CommentService,
     private activatedRoute: ActivatedRoute,
     private loginService: LoginService,
     private pictureService: PictureService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-
     this.initForm();
     this.pictureId = this.activatedRoute.snapshot.params['id'];
     this.userToken = this.loginService.getTokenFromStorage();
@@ -45,18 +47,20 @@ export class PictureComponent implements OnInit {
     return this.commentForm.controls;
   }
 
-    //Get user informations
-    getUserInfos() {
-      this.loginService.getUserDetails(this.userToken, this.userId).subscribe({
-        next: (data) => {
-          this.userInfos = data.user;
-          this.response = data.message;
-        },
-        error: (error) => {
-          this.response = error.message;
-        },
-      });
-    }
+  //Get user informations
+  getUserInfos() {
+    this.loginService.getUserDetails(this.userToken, this.userId).subscribe({
+      next: (data) => {
+        this.textBoxStyle.color = 'green';
+        this.userInfos = data.user;
+        this.response = data.message;
+      },
+      error: (error) => {
+        this.textBoxStyle.color = 'red';
+        this.response = error.message;
+      },
+    });
+  }
 
   //Function initForm()
   initForm() {
@@ -93,6 +97,7 @@ export class PictureComponent implements OnInit {
         .getCommentsOfPicture(token, this.pictureId)
         .subscribe({
           next: (data) => {
+            this.noComment = data.length > 0 ? false : true;
             this.pictureComments = data;
           },
           error: (error) => {},
@@ -120,23 +125,54 @@ export class PictureComponent implements OnInit {
         next: (data) => {
           this.submitted = false;
           this.commentForm.reset();
+          this.textBoxStyle.color = 'green';
           this.response = data.message;
           this.getCommentsOfPicture();
         },
         error: (error) => {
-          this.response = error.error.message;
+          this.textBoxStyle.color = 'red';
+          this.response = error.message;
         },
       });
   }
 
   //Delete a comment
   deleteComment(commentId: string) {
+    if (!confirm('Souhaitez-vous supprimer votre commentaire ?')) {
+      return;
+    }
     this.commentService.deleteComment(this.userToken, commentId).subscribe({
       next: (data) => {
+        this.textBoxStyle.color = 'green';
         this.response = data.message;
         this.getCommentsOfPicture();
       },
       error: (error) => {
+        this.textBoxStyle.color = 'red';
+        this.response = error.message;
+      },
+    });
+  }
+
+  //Delete the picture
+  deletePicture(pictureId: string) {
+    if (
+      !confirm(
+        'Souhaitez-vous supprimer votre photo et tous ses commentaires ?'
+      )
+    ) {
+      return;
+    }
+    this.pictureService.deletePicture(this.userToken, pictureId).subscribe({
+      next: (data) => {
+        this.textBoxStyle.color = 'green';
+        this.response = data.message;
+        setTimeout(() => {
+          this.router.navigateByUrl('wall');
+        }, 3000);
+      },
+      error: (error) => {
+        this.textBoxStyle.color = 'red';
         this.response = error.message;
       },
     });

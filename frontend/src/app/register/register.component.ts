@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   public formErrorMessage: string = 'Champ requis ou erroné';
   private dataToPost!: Register;
   public response!: any;
+  public textBoxStyle: any = { color: '#000' };
 
   constructor(
     private registerService: RegisterService,
@@ -76,10 +77,12 @@ export class RegisterComponent implements OnInit {
     //Call to the Register service for registering the new user
     this.registerService.registerNewUser(this.dataToPost).subscribe({
       next: (data) => {
+        this.textBoxStyle.color = 'green';
         this.response = data.message;
         this.router.navigateByUrl('/login');
       },
       error: (error) => {
+        this.textBoxStyle.color = 'red';
         this.response = error.error.message;
       },
     });
