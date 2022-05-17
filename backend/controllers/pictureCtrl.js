@@ -19,6 +19,15 @@ const {
 //CREATE A NEW PICTURE
 exports.addPicture = (req, res) => {
     const pictureObject = JSON.parse(req.body.picture);
+
+    //If uploaded file is not of type image/gif
+    if (req.file.mimetype !== 'image/gif') {
+        fs.unlink(`images/${req.file.filename}`, () => {});
+        return res.status(422)
+            .json({
+                message: "Format d'image accepté : GIF"
+            });
+    }
     const newPicture = {
         title: pictureObject.title,
         url: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
