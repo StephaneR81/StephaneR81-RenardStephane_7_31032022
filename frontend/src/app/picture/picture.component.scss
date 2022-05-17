@@ -141,9 +141,11 @@ main {
     h3 {
       text-align: center;
     }
-.noComments{
-  text-align: center;
-}
+
+    .noComments {
+      text-align: center;
+    }
+
     article {
       margin: 10px;
 
@@ -164,13 +166,32 @@ main {
           }
         }
 
-        .divCross {
+        .editComment {
+          padding: 5px;
+          border: 2px solid $darkGray;
+          border-left: none;
+          background-color: lighten($blue, 15%);
+          transition: all 0.3s;
+
+          &:hover {
+            background-color: lighten($blue, 5%);
+            cursor: pointer;
+          }
+        }
+
+        .divCross,
+        .divEdit {
           display: flex;
           flex-flow: row nowrap;
           justify-content: center;
           align-items: center;
           height: 35px;
           width: 35px;
+
+          a {
+            text-decoration: none;
+            font-size: 18px;
+          }
         }
       }
 
@@ -195,6 +216,7 @@ main {
         border-top: none;
         background-color: $lightGray;
         text-align: justify;
+        word-wrap: break-word;
       }
     }
   }

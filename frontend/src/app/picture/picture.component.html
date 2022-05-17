@@ -41,11 +41,15 @@
       <div class="commentWrapper">
         <p class="commentDate">Envoyé par <b>{{ comment.user.name }}</b><br />le
           {{comment.createdAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2' }}</p>
+
         <div *ngIf="comment.userId == userId || userInfos.isAdmin===true" class="deleteComment" title="Supprimer">
           <div class="divCross" (click)="deleteComment(comment.id)">&#10060;</div>
         </div>
-      </div>
 
+        <div *ngIf="comment.userId == userId || userInfos.isAdmin===true" class="editComment" title="Editer">
+          <div class="divEdit"><a [routerLink]="['/edit-comment', comment.id ]">&#9998;</a></div>
+        </div>
+      </div>
 
       <p class="commentContent">{{comment.comment}}</p>
     </article>

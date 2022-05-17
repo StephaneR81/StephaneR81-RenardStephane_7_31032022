@@ -19,6 +19,16 @@ export class CommentService {
     return this.http.get(this._url + '/' + pictureId, requestOptions);
   }
 
+  //Get one comment
+  getOneComment(auth_token: string, commentId: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth_token}`,
+    });
+    const requestOptions = { headers: headers };
+    return this.http.get(this._url + '/comment/' + commentId, requestOptions);
+  }
+
   //Function for adding a new comment
   addComment(auth_token: string, body: string): Observable<any> {
     const headers = new HttpHeaders({
@@ -27,6 +37,20 @@ export class CommentService {
     });
     const requestOptions = { headers: headers };
     return this.http.post(this._url, body, requestOptions);
+  }
+
+  //Update comment
+  updateComment(
+    auth_token: string,
+    body: string,
+    commentId: string
+  ): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth_token}`,
+    });
+    const requestOptions = { headers: headers };
+    return this.http.put(this._url + '/' + commentId, body, requestOptions);
   }
 
   //Function to delete a comment

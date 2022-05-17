@@ -14,6 +14,7 @@ export class UserlistComponent implements OnInit {
   public response!: string;
   public textBoxStyle: any = { color: '#000' };
   public noUser: boolean = true;
+  public clicked: boolean = false;
 
   constructor(
     private loginService: LoginService,
@@ -32,7 +33,7 @@ export class UserlistComponent implements OnInit {
       next: (data) => {
         this.textBoxStyle.color = 'green';
         this.response = data.message;
-        this.noUser = Object.entries(data).length > 0 ? false : true;
+        this.noUser = Object.values(data.users).length > 0 ? false : true;
         this.usersList = data.users;
       },
       error: (error) => {

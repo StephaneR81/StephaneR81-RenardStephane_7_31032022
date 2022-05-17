@@ -37,7 +37,7 @@
   <section class="main__wrapper">
 
     <p>{{ noPictureMsg }}</p>
-    <a href="#" [routerLink]="['/pictures', picture.id]" *ngFor="let picture of this.pictures">
+    <a [routerLink]="['/pictures', picture.id]" *ngFor="let picture of this.pictures">
       <article>
         <figure>
           <img [src]="picture.url" alt="Photo postée par un membre">

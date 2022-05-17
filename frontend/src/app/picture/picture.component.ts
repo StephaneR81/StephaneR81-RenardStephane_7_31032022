@@ -177,4 +177,9 @@ export class PictureComponent implements OnInit {
       },
     });
   }
+
+  //Function editComment that redirects to page editComment
+  // editComment(commentId: string) {
+  //   this.router.navigateByUrl('/edit-comment/' + commentId);
+  // }
 }

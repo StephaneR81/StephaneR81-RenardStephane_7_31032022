@@ -1,0 +1,19 @@
+<main>
+    <h2>Editer mon commentaire</h2>
+
+ <!-- Comment formular edition with textarea -->
+ <section class="formular">
+    <form novalidate [formGroup]="commentForm" (ngSubmit)="updateComment()" id="commentForm">
+      <fieldset>
+        <legend>Commenter cette photo</legend>
+        <textarea formControlName="comment" name="commentField" id="commentField" cols="25" rows="5"
+          placeholder="Saisissez votre commentaire ici (500 caractères maximum)" minlength="3" maxlength="500"
+          required></textarea>
+        <p *ngIf="submitted && formControls['comment'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
+        <button type="submit" id="commentSubmit">Valider les modifications</button>
+        <p [ngStyle]="textBoxStyle" class="errorTextBox">{{ response }}</p>
+      </fieldset>
+    </form>
+  </section>
+
+</main>

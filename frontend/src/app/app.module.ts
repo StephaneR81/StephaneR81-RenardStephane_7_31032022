@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
 import { UserlistComponent } from './userlist/userlist.component';
+import { EditCommentComponent } from './edit-comment/edit-comment.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UserlistComponent } from './userlist/userlist.component';
     WallComponent,
     PictureComponent,
     UserlistComponent,
+    EditCommentComponent,
   ],
   imports: [
     BrowserModule,
