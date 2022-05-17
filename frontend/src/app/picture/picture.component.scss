@@ -75,6 +75,7 @@ main {
         &:hover {
           background-color: $lightRed;
           color: $white;
+          cursor: pointer;
         }
       }
     }
@@ -119,6 +120,7 @@ main {
           &:hover {
             background-color: $lightRed;
             color: $white;
+            cursor: pointer;
           }
         }
 
