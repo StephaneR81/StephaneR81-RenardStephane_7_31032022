@@ -13,6 +13,8 @@ const {
     Sequelize
 } = require('../models');
 
+
+
 //CREATE A NEW USER ACCOUNT
 exports.signup = (req, res) => {
     //Creates the new user
@@ -32,7 +34,7 @@ exports.signup = (req, res) => {
             if (doubleEmail) {
                 return res.status(401)
                     .json({
-                        message: "L'adresse E-mail est déjà utilisée. (Code 401)"
+                        message: "L'adresse E-mail est déjà utilisée."
                     });
             }
 
@@ -58,7 +60,7 @@ exports.signup = (req, res) => {
                                 .then((data) => {
                                     return res.status(201)
                                         .json({
-                                            message: 'Nouvel utilisateur enregistré avec succès. (Code 201)'
+                                            message: 'Nouvel utilisateur enregistré avec succès.'
                                         });
                                 })
 
@@ -66,7 +68,7 @@ exports.signup = (req, res) => {
                                     //Create method failed
                                     return res.status(500)
                                         .json({
-                                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                                            message: 'Erreur interne, veuillez retenter ultérieurement.'
                                         });
                                 });
                         })
@@ -75,7 +77,7 @@ exports.signup = (req, res) => {
                             //Bcrypt method failed
                             return res.status(500)
                                 .json({
-                                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                                 });
                         });
                 })
@@ -84,7 +86,7 @@ exports.signup = (req, res) => {
                     //findAll method failed
                     return res.status(500)
                         .json({
-                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                            message: 'Erreur interne, veuillez retenter ultérieurement.'
                         });
                 });
         })
@@ -92,10 +94,12 @@ exports.signup = (req, res) => {
             //FindOne method failed
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)' + error
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };
+
+
 
 //AUTHENTICATES AN EXISTING USER
 exports.login = (req, res) => {
@@ -138,17 +142,18 @@ exports.login = (req, res) => {
                 .catch((error) => { //bcrypt.compare failed
                     return res.status(500)
                         .json({
-                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                            message: 'Erreur interne, veuillez retenter ultérieurement.'
                         });
                 });
         })
         .catch((error) => { //findOne method failed
             res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };
+
 
 //UPDATE USER PROFILE INFORMATIONS
 exports.updateProfile = (req, res, next) => {
@@ -164,7 +169,7 @@ exports.updateProfile = (req, res, next) => {
             if (!user) {
                 return res.status(404)
                     .json({
-                        message: 'Echec de la modification du profil. (Code 404)'
+                        message: 'Echec de la modification du profil.'
                     });
             }
 
@@ -193,7 +198,7 @@ exports.updateProfile = (req, res, next) => {
                         .then((user) => {
                             return res.status(201)
                                 .json({
-                                    message: `Les informations de l'utilisateur ont été mises à jour avec succès. (Code 201). N'oubliez pas d'utiliser votre nouveau mot de passe le cas échéant lors de votre prochaine connexion`
+                                    message: `Les informations de l'utilisateur ont été mises à jour avec succès. N'oubliez pas d'utiliser votre nouveau mot de passe le cas échéant lors de votre prochaine connexion`
                                 });
                         })
 
@@ -201,7 +206,7 @@ exports.updateProfile = (req, res, next) => {
                             //Update method failed
                             res.status(500)
                                 .json({
-                                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                                 });
                         });
                 })
@@ -210,7 +215,7 @@ exports.updateProfile = (req, res, next) => {
                     //Bcrypt method failed
                     res.status(500)
                         .json({
-                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                            message: 'Erreur interne, veuillez retenter ultérieurement.'
                         });
                 });
         })
@@ -219,10 +224,12 @@ exports.updateProfile = (req, res, next) => {
             //findOne method failed
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };
+
+
 
 //Get user informations
 exports.getUser = (req, res, next) => {
@@ -230,7 +237,7 @@ exports.getUser = (req, res, next) => {
     if (!req.auth.userId || req.auth.userId !== req.params.id) {
         return res.status(401)
             .json({
-                message: "Demande non autorisée. (Code 401)"
+                message: "Demande non autorisée."
             });
     }
 
@@ -244,16 +251,16 @@ exports.getUser = (req, res, next) => {
             if (!user) {
                 return res.status(404)
                     .json({
-                        message: "L'utilisateur n'a pas pu être trouvé. (Code 404)"
+                        message: "L'utilisateur n'a pas pu être trouvé."
                     });
             }
 
-            // if (!req.auth.userId || req.auth.userId !== req.params.id) {
-            //     return res.status(401)
-            //         .json({
-            //             message: "Demande non autorisée. (Code 401)"
-            //         });
-            // }
+            if (!req.auth.userId || req.auth.userId !== req.params.id) {
+                return res.status(401)
+                    .json({
+                        message: "Demande non autorisée."
+                    });
+            }
 
             return res.status(200)
                 .json({
@@ -265,10 +272,12 @@ exports.getUser = (req, res, next) => {
             //findOne method failed
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };
+
+
 
 //Delete an user account
 exports.deleteUser = (req, res, next) => {
@@ -313,7 +322,7 @@ exports.deleteUser = (req, res, next) => {
                     delete req.auth;
                     return res.status(201)
                         .json({
-                            message: `Le compte utilisateur de ${userToDelete.name} a été supprimé définitivement. (Code 201)\nRedirection en cours, patientez...`
+                            message: `Le compte utilisateur de ${userToDelete.name} a été supprimé définitivement.\nRedirection en cours, patientez...`
                         });
                 })
 
@@ -321,7 +330,7 @@ exports.deleteUser = (req, res, next) => {
                     //destroy method failed
                     return res.status(500)
                         .json({
-                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                            message: 'Erreur interne, veuillez retenter ultérieurement.'
                         });
                 });
         })
@@ -330,7 +339,7 @@ exports.deleteUser = (req, res, next) => {
             //findOne method failed
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)' + error
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };

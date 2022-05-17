@@ -16,14 +16,14 @@ exports.create = (req, res) => {
         .then((newComment) => {
             return res.status(201)
                 .json({
-                    message: 'Votre commentaire a été publié avec succès. (Code 201)'
+                    message: 'Votre commentaire a été publié avec succès.'
                 });
         })
         .catch((error) => {
             //Create method failed
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };
@@ -41,7 +41,7 @@ exports.modify = (req, res) => {
             if (!foundComment) {
                 return res.status(404)
                     .json({
-                        message: "Le commentaire n'a pas pu être trouvé. (Code 404)"
+                        message: "Le commentaire n'a pas pu être trouvé."
                     });
             }
 
@@ -68,13 +68,13 @@ exports.modify = (req, res) => {
                 .then((updatedComment) => {
                     return res.status(201)
                         .json({
-                            message: "Le commentaire a été modifié avec succès. (Code 201)"
+                            message: "Le commentaire a été modifié avec succès."
                         });
                 })
                 .catch((error) => {
                     return res.status(500)
                         .json({
-                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                            message: 'Erreur interne, veuillez retenter ultérieurement.'
                         });
                 });
         })
@@ -82,7 +82,7 @@ exports.modify = (req, res) => {
             //findOne method failed
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };
@@ -98,7 +98,7 @@ exports.delete = (req, res) => {
             if (!foundComment) {
                 return res.status(404)
                     .json({
-                        message: "Le commentaire n'a pas pu être trouvé. (Code 404)"
+                        message: "Le commentaire n'a pas pu être trouvé."
                     });
             }
 
@@ -106,7 +106,7 @@ exports.delete = (req, res) => {
             if (!req.auth.isAdmin && req.auth.userId !== String(foundComment.userId)) {
                 return res.status(403)
                     .json({
-                        message: "Vous n'avez pas la permission de modifier ce commentaire. (Code 403)"
+                        message: "Vous n'avez pas la permission de modifier ce commentaire."
                     });
             }
 
@@ -120,12 +120,12 @@ exports.delete = (req, res) => {
                     if (result == 1) {
                         return res.status(201)
                             .json({
-                                message: "Le commentaire a été supprimé avec succès. (Code 201)"
+                                message: "Le commentaire a été supprimé avec succès."
                             });
                     } else {
                         return res.status(401)
                             .json({
-                                message: `Le commentaire ID : ${req.params.id} n'a pas pu être supprimé. (Code 401)`
+                                message: `Le commentaire ID : ${req.params.id} n'a pas pu être supprimé.`
                             });
                     }
                 })
@@ -133,7 +133,7 @@ exports.delete = (req, res) => {
                     //delete method failed
                     return res.status(500)
                         .json({
-                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                            message: 'Erreur interne, veuillez retenter ultérieurement.'
                         });
                 });
 
@@ -142,7 +142,7 @@ exports.delete = (req, res) => {
             //findOne method failed
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };
@@ -166,7 +166,7 @@ exports.getAll = (req, res) => {
             if (!foundComments) {
                 return res.status(404)
                     .json({
-                        message: "Aucun commentaire à afficher. (Code 404)"
+                        message: "Aucun commentaire à afficher."
                     });
             }
             return res.status(200)
@@ -176,7 +176,7 @@ exports.getAll = (req, res) => {
             //findAll method failed
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };
@@ -192,7 +192,7 @@ exports.getOne = (req, res) => {
             if (!foundComment) {
                 return res.status(404)
                     .json({
-                        message: "Le commentaire n'a pas pu être trouvé. (Code 404)"
+                        message: "Le commentaire n'a pas pu être trouvé."
                     });
             }
             return res.status(200)
@@ -203,7 +203,7 @@ exports.getOne = (req, res) => {
             //findOne method failed
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 })
         });
 };

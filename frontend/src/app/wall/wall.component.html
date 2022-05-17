@@ -7,7 +7,7 @@
 
           <div class="divFile">
             <label for="fileField" class="labelFile">Sélectionnez un fichier</label>
-            <input (change)="onFileChange($event)" id="fileField" type="file" name="fileField" required>
+            <input (change)="onFileChange($event)" id="fileField" type="file" accept="image/gif" name="fileField" required>
             <p *ngIf="!selectedFile">Aucun fichier sélectionné</p>
             <p *ngIf="selectedFile">Fichier : {{selectedFile}}</p>
             <p *ngIf="submitted && formControls['file'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>

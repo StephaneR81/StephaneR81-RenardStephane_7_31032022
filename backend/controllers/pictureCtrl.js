@@ -127,14 +127,14 @@ exports.deletePicture = (req, res) => {
             if (!foundPicture) {
                 return res.status(404)
                     .json({
-                        message: "Cette photo n'existe pas. (Code 404)"
+                        message: "Cette photo n'existe pas."
                     });
             }
             //Check if the sender is an Administrator or the owner of the picture
             if (!req.auth.isAdmin && req.auth.userId !== String(foundPicture.userId)) {
                 return res.status(403)
                     .json({
-                        message: "Vous n'avez pas la permission de modifier cette photo. (Code 403)"
+                        message: "Vous n'avez pas la permission de modifier cette photo."
                     });
             }
 
@@ -153,12 +153,12 @@ exports.deletePicture = (req, res) => {
                         if (result == 1) {
                             return res.status(201)
                                 .json({
-                                    message: 'La photo a été supprimée avec succès. (code 201)'
+                                    message: 'La photo a été supprimée avec succès.'
                                 });
                         } else {
                             return res.status(401)
                                 .json({
-                                    message: `La photo ID : ${req.params.id} n'a pas pu être supprimée. (code 401)`
+                                    message: `La photo ID : ${req.params.id} n'a pas pu être supprimée.`
                                 });
                         }
                     })
@@ -166,7 +166,7 @@ exports.deletePicture = (req, res) => {
                         //delete method failed
                         return res.status(500)
                             .json({
-                                message: 'Erreur interne, veuillez retenter ultérieurement. (code 500)'
+                                message: 'Erreur interne, veuillez retenter ultérieurement.'
                             });
                     });
             });
@@ -176,7 +176,7 @@ exports.deletePicture = (req, res) => {
             //findOne method failed
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };
@@ -196,7 +196,7 @@ exports.getAllPictures = (req, res) => {
             if (foundPictures.length === 0) {
                 return res.status(404)
                     .json({
-                        message: "Aucune photo à afficher. (Code 404)"
+                        message: "Aucune photo à afficher."
                     });
             }
             return res.status(200)
@@ -205,7 +205,7 @@ exports.getAllPictures = (req, res) => {
         .catch((error) => {
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)' + error
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };
@@ -230,7 +230,7 @@ exports.getOnePicture = (req, res) => {
             if (!foundPicture) {
                 return res.status(404)
                     .json({
-                        message: "La photo n'a pas pu être trouvée. (Code 404)"
+                        message: "La photo n'a pas pu être trouvée."
                     });
             }
             return res.status(200)
@@ -240,7 +240,7 @@ exports.getOnePicture = (req, res) => {
             //findOne method failed
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };
