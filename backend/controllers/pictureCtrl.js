@@ -41,7 +41,7 @@ exports.addPicture = (req, res) => {
             }
             return res.status(201)
                 .json({
-                    message: 'La photo a été ajoutée avec succès. (Code 201)'
+                    message: 'La photo a été ajoutée avec succès.'
                 });
         })
         .catch((error) => {
@@ -49,7 +49,7 @@ exports.addPicture = (req, res) => {
             fs.unlink(`images/${req.file.filename}`, () => {});
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };
@@ -67,7 +67,7 @@ exports.modifyPicture = (req, res) => {
             if (!foundPicture) {
                 return res.status(404)
                     .json({
-                        message: 'Aucune photo à afficher. (Code 404)'
+                        message: 'Aucune photo à afficher.'
                     });
             }
 
@@ -75,7 +75,7 @@ exports.modifyPicture = (req, res) => {
             if (!req.auth.isAdmin && req.auth.userId !== String(foundPicture.userId)) {
                 return res.status(403)
                     .json({
-                        message: "Vous n'avez pas la permission de modifier cette photo. (Code 403)"
+                        message: "Vous n'avez pas la permission de modifier cette photo."
                     });
             }
 
@@ -102,14 +102,14 @@ exports.modifyPicture = (req, res) => {
                 .then((updatedPicture) => {
                     return res.status(201)
                         .json({
-                            message: 'La photo a été modifiée avec succès. (Code 201)'
+                            message: 'La photo a été modifiée avec succès.'
                         });
                 })
                 .catch((error) => {
                     //UpdateOne method failed
                     return res.status(400)
                         .json({
-                            message: 'Erreur interne, veuillez retenter ultérieurement. (Code 400)'
+                            message: 'Erreur interne, veuillez retenter ultérieurement.'
                         });
                 });
 
@@ -118,7 +118,7 @@ exports.modifyPicture = (req, res) => {
             //FindOne method failed
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement. (Code 500)'
+                    message: 'Erreur interne, veuillez retenter ultérieurement.'
                 });
         });
 };
