@@ -14,6 +14,7 @@ import { PictureComponent } from './picture/picture.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
+import { UserlistComponent } from './userlist/userlist.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AuthGuard } from './guards/auth.guard';
     HomeComponent,
     WallComponent,
     PictureComponent,
+    UserlistComponent,
   ],
   imports: [
     BrowserModule,

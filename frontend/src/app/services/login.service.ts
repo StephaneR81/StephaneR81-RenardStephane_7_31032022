@@ -18,6 +18,16 @@ export class LoginService {
     });
   }
 
+  //Get all users excepted administrator
+  getAllUsers(auth_token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth_token}`,
+    });
+    const requestOptions = { headers: headers };
+    return this.http.get<any>(this._urlBase + '/userlist', requestOptions);
+  }
+
   //Get user details
   getUserDetails(auth_token: string, userId: string): Observable<any> {
     const headers = new HttpHeaders({
@@ -44,8 +54,6 @@ export class LoginService {
   }
 
   logout(): void {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
+    localStorage.clear();
   }
 }

@@ -1,0 +1,15 @@
+<main>
+  <h2>Gestion des utilisateurs</h2>
+  <div class="noUsers">
+    <p *ngIf="noUser === true">Aucun utilisateur n'est enregistré</p>
+  </div>
+  <p [ngStyle]="textBoxStyle" class="errorTextBox">{{ response }}</p>
+  <div class="listWrapper">
+    <div class="user" *ngFor="let user of usersList">
+      <p>{{user.name}}</p>
+      <p>{{user.email}}</p>
+      <button (click)="deleteUserAccount(user.id, user.name)">Supprimer</button>
+    </div>
+  </div>
+
+</main>

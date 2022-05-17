@@ -1,8 +1,8 @@
 <header>
-    <a [routerLink]="['/home']">
-      <img src="../../assets/images/icon-left-font-monochrome-black.png"
-        alt="Logo de Groupomania représentant un globe sur la gauche et le nom de l'entreprise sur la droite en couleur noire.">
-    </a>
+  <a [routerLink]="['/home']">
+    <img src="../../assets/images/icon-left-font-monochrome-black.png"
+      alt="Logo de Groupomania représentant un globe sur la gauche et le nom de l'entreprise sur la droite en couleur noire.">
+  </a>
   <h1>Bienvenue<br />sur notre réseau social !</h1>
   <nav>
     <ul>
@@ -10,6 +10,7 @@
       <li *ngIf="!isLoggedIn()"><a [routerLink]="['/login']">Connexion</a></li>
       <li *ngIf="isLoggedIn()"><a [routerLink]="['/wall']">Photos</a></li>
       <li *ngIf="isLoggedIn()"><a [routerLink]="['/profile']">Profil</a></li>
+      <li *ngIf="isLoggedIn() && isAdmin()"><a [routerLink]="['/userlist']">Utilisateurs</a></li>
       <li *ngIf="isLoggedIn()"><a [routerLink]="['/login']" (click)="logout()">Déconnexion</a></li>
 
     </ul>

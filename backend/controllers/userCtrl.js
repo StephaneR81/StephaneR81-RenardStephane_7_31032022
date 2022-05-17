@@ -129,6 +129,7 @@ exports.login = (req, res) => {
                     return res.status(200) //Returns an userId and a token
                         .json({
                             userId: user.id,
+                            isAdmin: user.isAdmin,
                             token: jwt.sign({
                                 userId: user.id,
                                 name: user.name,
@@ -255,12 +256,12 @@ exports.getUser = (req, res, next) => {
                     });
             }
 
-            if (!req.auth.userId || req.auth.userId !== req.params.id) {
-                return res.status(401)
-                    .json({
-                        message: "Demande non autorisée."
-                    });
-            }
+            // if (!req.auth.userId || req.auth.userId !== req.params.id) {
+            //     return res.status(401)
+            //         .json({
+            //             message: "Demande non autorisée."
+            //         });
+            // }
 
             return res.status(200)
                 .json({
@@ -276,6 +277,43 @@ exports.getUser = (req, res, next) => {
                 });
         });
 };
+
+
+
+//Get all users
+exports.getAllUsers = (req, res, next) => {
+    //If user is authenticated and is administrator
+    if (req.auth && !req.auth.isAdmin) {
+        return res.status(403)
+            .json({
+                message: "Accès non autorisé."
+            });
+    }
+
+    User.findAll({
+            attributes: ['id', 'name', 'email', 'isAdmin'],
+            where: {
+                isAdmin: false
+            }
+        })
+        .then((users) => {
+            if (!users) { //No user was found
+                return res.status(404)
+                    .json({
+                        message: "Aucun utilisateur n'a été trouvé."
+                    });
+            }
+            return res.status(200)
+                .json({
+                    users
+                });
+        })
+        .catch((error) => {
+            // findAll method failed
+            message: ""
+        });
+};
+
 
 
 

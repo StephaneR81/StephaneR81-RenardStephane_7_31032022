@@ -76,6 +76,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('token', data.token);
         localStorage.setItem('userId', data.userId);
+        localStorage.setItem('isAdmin', data.isAdmin);
         this.router.navigateByUrl('/wall');
       },
       error: (error) => {
