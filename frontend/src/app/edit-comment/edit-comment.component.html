@@ -6,6 +6,7 @@
     <form novalidate [formGroup]="commentForm" (ngSubmit)="updateComment()" id="commentForm">
       <fieldset>
         <legend>Commenter cette photo</legend>
+        <label for="commentField">Commentaire</label>
         <textarea formControlName="comment" name="commentField" id="commentField" cols="25" rows="5"
           placeholder="Saisissez votre commentaire ici (500 caractères maximum)" minlength="3" maxlength="500"
           required></textarea>

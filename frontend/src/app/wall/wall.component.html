@@ -43,7 +43,7 @@
           <img [src]="picture.url" alt="Photo postée par un membre">
           <figcaption>
             <h3>{{ picture.title }}</h3>
-            <p>Postée par <b>{{ picture.user.name }}</b>
+            <p>Postée par <strong>{{ picture.user.name }}</strong>
               <br />{{ picture.createdAt | date: "dd/MM/YYYY à HH:mm" : 'GMT+2'}}
             </p>
           </figcaption>
