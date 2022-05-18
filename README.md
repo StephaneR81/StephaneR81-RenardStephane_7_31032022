@@ -40,7 +40,7 @@ Use `Ctrl+C` in the terminal to stop the local server.
 
 Navigate to the `/frontend` folder and run the `npm install` command.
 
-The required dependencies wil be installed.
+The required dependencies will be installed.
 
 You also have to install `Angular` by typing the `npm i @angular/cli` command in your terminal.
 
