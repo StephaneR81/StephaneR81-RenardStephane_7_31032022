@@ -5,33 +5,30 @@ main {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  width: 100%;
 
   .pictureForm {
     width: 100%;
 
     legend {
-      font-weight: bold;
       font-size: 18px;
-    }
-
-    form {
-      width: 100%;
-      padding: 1px;
     }
 
     .formCtrlWrapper {
       display: flex;
       flex-flow: column nowrap;
       align-items: center;
-      width: auto;
+      width: 100%;
 
       .divFile {
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
-        background-color: $lightGray;
         width: 100%;
+        background-color: $lightGray;
+
+        p {
+          color: darken($darkGray, 50%);
+        }
       }
 
       .divTitle {
@@ -62,6 +59,7 @@ main {
       padding: 10px;
       border-radius: 50px;
       text-align: center;
+      font-weight: bold;
       background-color: $lightBlue;
       transition: all 0.3s;
 
@@ -72,18 +70,19 @@ main {
     }
 
     .labelText {
-      font-weight: bold;
+      font-size: 18px;
     }
 
     input[type="text"] {
       min-height: 40px;
-      margin-top: 5px;
+      border: none;
+      border-bottom: 1px solid $darkGray;
       margin-bottom: 20px;
       padding: 0 5px;
       font-size: 17px;
 
       &:focus {
-        outline: none;
+        border: 1px solid transparent;
       }
     }
 
@@ -105,12 +104,7 @@ main {
       color: $lightRed;
     }
 
-    fieldset {
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: center;
-      margin: 0;
-    }
+    // fieldset {}
 
     button {
       width: fit-content;
@@ -119,15 +113,21 @@ main {
       border: none;
       border-radius: 50px;
       font-size: 18px;
+      transition: all 0.3s;
 
       &:hover {
         background-color: $lightRed;
         color: $white;
+        cursor: pointer;
       }
     }
   }
 
   h2 {
+    width: 100%;
+    padding: 10px 0;
+    background-color: $lightGray;
+    text-align: center;
     font-size: 23px;
   }
 
@@ -185,77 +185,32 @@ main {
 }
 
 //Media query for tablet
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+@media screen and (min-width: 768px) {
   main {
-    max-width: 70%;
-    margin: 0 auto;
 
     .main__wrapper {
       flex-flow: row wrap;
       justify-content: center;
       align-items: center;
       width: 100%;
-      border: 1px solid $darkGray;
       padding: 15px;
       margin-bottom: 20px;
-
-      a {
-        width: 100%;
-      }
     }
-
-    form {
-      width: 100%;
-    }
-
   }
-
-  fieldset {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 100%;
-    align-items: center;
-  }
-
-  .pictureForm {
-    width: 100%;
-  }
-
 }
 
 //Media query for Desktop
 @media screen and (min-width: 1024px) {
   main {
-    max-width: 55%;
-    margin: 0 auto;
+    // max-width: 55%;
+    // margin: 0 auto;
 
     .main__wrapper {
       flex-flow: row wrap;
       justify-content: center;
       align-items: center;
-      width: 100%;
-      border: 1px solid $darkGray;
       padding: 15px;
       margin-bottom: 20px;
-
-      a {
-        width: 100%;
-      }
-    }
-
-    form {
-      width: 100%;
-    }
-
-    fieldset {
-      display: flex;
-      flex-flow: column nowrap;
-      width: 100%;
-      align-items: center;
-    }
-
-    .pictureForm {
-      width: 100%;
     }
   }
 }

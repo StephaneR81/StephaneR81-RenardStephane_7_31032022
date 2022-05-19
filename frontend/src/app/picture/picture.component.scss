@@ -7,6 +7,10 @@ main {
   align-items: center;
 
   h2 {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    background-color: $lightGray;
     font-size: 25px;
     color: $textH2;
   }
@@ -18,7 +22,7 @@ main {
     width: 100%;
     max-width: 300px;
     margin: 10px;
-    border: 1px solid $darkGray;
+    // border: 1px solid $darkGray;
 
     article {
       display: flex;
@@ -71,6 +75,7 @@ main {
         border: none;
         border-radius: 50px;
         font-size: 18px;
+        transition: all 0.3s;
 
         &:hover {
           background-color: $lightRed;
@@ -85,21 +90,21 @@ main {
     width: 100%;
 
     form {
-      padding: 10px;
 
       fieldset {
         display: flex;
         flex-flow: column nowrap;
         margin: 0;
-        font-weight: bold;
         font-size: 18px;
 
         textarea {
-          margin: 0;
-          margin-top: 10px;
-          padding: 0;
-          outline: none;
+          margin: 10px 0;
+          padding: 5px;
+          border: none;
+          border-bottom: 1px solid $darkGray;
+          background-color: $lightGray;
           resize: none;
+          font-size: 15px;
         }
 
         p {
@@ -116,6 +121,7 @@ main {
           border: none;
           border-radius: 50px;
           font-size: 18px;
+          transition: all 0.3s;
 
           &:hover {
             background-color: $lightRed;
@@ -126,7 +132,6 @@ main {
 
         .errorFormMessage,
         .errorTextBox {
-          min-width: 20px;
           margin: 5px 0;
           font-size: 18px;
           color: $lightRed;
@@ -137,17 +142,30 @@ main {
 
   .comments {
     width: 100%;
+    margin-bottom: 50px;
 
     h3 {
+      padding: 10px 0;
       text-align: center;
+      color: $textH2;
+      background-color: $lightGray;
+      width: 100%;
     }
 
     .noComments {
+      margin: 20px 0;
+      padding: 5px;
       text-align: center;
+      white-space: wrap;
+      color: $lightRed;
+      font-size: 18px;
     }
 
     article {
-      margin: 10px;
+      overflow: hidden;
+      margin: 20px 10px;
+      border: 1px solid $darkGray;
+      border-radius: 10px 10px 0 0;
 
       .commentWrapper {
         display: flex;
@@ -155,8 +173,6 @@ main {
 
         .deleteComment {
           padding: 5px;
-          border: 2px solid $darkGray;
-          border-left: none;
           background-color: lighten($lightRed, 15);
           transition: all 0.3s;
 
@@ -168,8 +184,6 @@ main {
 
         .editComment {
           padding: 5px;
-          border: 2px solid $darkGray;
-          border-left: none;
           background-color: lighten($blue, 15%);
           transition: all 0.3s;
 
@@ -204,7 +218,6 @@ main {
         width: 100%;
         margin-bottom: 0;
         padding: 5px;
-        border: 1px solid $darkGray;
         background-color: $gray;
         font-size: 14px;
         font-style: italic;
@@ -212,8 +225,7 @@ main {
 
       .commentContent {
         padding: 10px;
-        border: 1px solid $darkGray;
-        border-top: none;
+        border-top: 1px solid $darkGray;
         background-color: $lightGray;
         text-align: justify;
         word-wrap: break-word;
@@ -223,10 +235,8 @@ main {
 }
 
 //Media query for tablet
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+@media screen and (min-width: 768px) {
   main {
-    max-width: 70%;
-    margin: 0 auto;
 
     h2,
     h3 {
@@ -237,8 +247,7 @@ main {
       display: flex;
       flex-flow: row nowrap;
       justify-content: center;
-      // max-width: 300px;
-      width: 70%;
+      margin-bottom: 50px;
       padding: 0;
       border: 1px solid $darkGray;
 
@@ -257,25 +266,10 @@ main {
     }
 
     .formular {
-      margin-bottom: 20px;
-
-      form {
-        padding: 0;
-      }
-    }
-
-    .comments {
-      article {
-        padding: 0;
-      }
+      margin-bottom: 50px;
     }
   }
 }
 
 //Media query for desktop
-@media screen and (min-width: 1024px) {
-  main {
-    max-width: 55%;
-    margin: 0 auto;
-  }
-}
+@media screen and (min-width: 1024px) {}

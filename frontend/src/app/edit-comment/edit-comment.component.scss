@@ -1,0 +1,74 @@
+@import'../../variables';
+
+//Media query for mobile
+main {
+  display: flex;
+  flex-flow: column nowrap;
+
+  h2 {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    background-color: $lightGray;
+    font-size: 25px;
+    color: $textH2;
+  }
+
+  .formular {
+    fieldset {
+      display: flex;
+      flex-flow: column nowrap;
+      margin: 0;
+      margin-bottom: 30px;
+      padding-top: 30px;
+      border: none;
+      border-top: 2px groove ThreeDFace;
+      font-size: 18px;
+    }
+
+    label {
+      font-size: 16px;
+    }
+
+    textarea {
+      margin: 10px 0;
+      padding: 5px;
+      border: none;
+      border-bottom: 1px solid $darkGray;
+      background-color: $lightGray;
+      resize: none;
+      font-size: 15px;
+    }
+
+    button {
+      align-self: center;
+      width: fit-content;
+      margin: 0 auto;
+      padding: 15px;
+      border: none;
+      border-radius: 50px;
+      font-size: 18px;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: $lightRed;
+        color: $white;
+        cursor: pointer;
+      }
+    }
+
+    .errorFormMessage,
+    .errorTextBox {
+      margin: 10px 0;
+      font-size: 18px;
+      color: $lightRed;
+    }
+  }
+}
+
+
+//Media query for tablet
+@media screen and (min-width:768px) {}
+
+//Media query for desktop
+@media screen and (min-width:1024px) {}

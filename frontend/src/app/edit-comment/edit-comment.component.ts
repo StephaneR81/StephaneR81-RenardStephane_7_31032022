@@ -46,7 +46,6 @@ export class EditCommentComponent implements OnInit {
     this.location.back();
   }
 
-
   //Function initForm()
   initForm() {
     this.commentForm = this.formBuilder.group({
@@ -91,12 +90,16 @@ export class EditCommentComponent implements OnInit {
       .updateComment(this.userToken, JSON.stringify(body), this.commentId)
       .subscribe({
         next: (data) => {
+          this.textBoxStyle = { color: 'green' };
           this.response = data.message;
           setTimeout(() => {
             this.goBack();
           }, 3000);
         },
-        error: (error) => {},
+        error: (error) => {
+          this.textBoxStyle = { color: 'red' };
+          this.response = error.message;
+        },
       });
   }
 }

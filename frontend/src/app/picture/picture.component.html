@@ -36,7 +36,7 @@
   <!-- Comment card sample -->
   <section class="comments">
     <h3>Commentaires des utilisateurs</h3>
-    <p class="noComments" *ngIf="noComment">Il n'y a pas encore de commentaire à afficher !</p>
+    <p class="noComments" *ngIf="noComment">Il n'y a pas encore de commentaire<br />à afficher</p>
     <article *ngFor="let comment of pictureComments">
       <div class="commentWrapper">
         <p class="commentDate">Envoyé par <b>{{ comment.user.name }}</b><br />le

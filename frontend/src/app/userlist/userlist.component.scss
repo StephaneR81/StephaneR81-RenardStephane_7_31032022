@@ -3,33 +3,42 @@
 //Media query for mobile
 main {
   h2 {
+    width: 100%;
+    padding: 10px 0;
+    background-color: $lightGray;
     text-align: center;
+
   }
 
   .noUsers {
+    height: 25px;
+    min-height: 25px;
+
     p {
+
+      margin: 50px auto;
       text-align: center;
+      font-size: 18px;
+      color: $lightRed;
     }
   }
 
   .errorTextBox {
-    min-width: 20px;
+    height: 25px;
+    min-height: 25px;
     margin: 5px 0;
     font-size: 18px;
     color: $lightRed;
   }
 
   .listWrapper {
-    width: 100%;
+    margin-bottom: 100px;
 
     .user {
       display: flex;
       flex-flow: row nowrap;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
       margin: 15px 0;
-      padding: 3px;
+      padding: 10px 3px;
       background-color: $gray;
 
       p {
@@ -49,13 +58,14 @@ main {
         margin: 0 5px;
         padding: 5px;
         border: none;
-        border-radius: 5px;
+        border-radius: 50px;
         background-color: $lightRed;
         color: $lightGray;
         transition: all 0.3s;
-        &:hover{
-            cursor: pointer;
-            background-color: darken($lightRed,10%);
+
+        &:hover {
+          cursor: pointer;
+          background-color: darken($lightRed, 20%);
         }
       }
     }
@@ -63,17 +73,7 @@ main {
 }
 
 //Media query for tablet
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  main {
-    max-width: 70%;
-    margin: 0 auto;
-  }
-}
+@media screen and (min-width: 768px) {}
 
 //Media query for desktop
-@media screen and (min-width: 1024px) {
-  main {
-    max-width: 55%;
-    margin: 0 auto;
-  }
-}
+@media screen and (min-width: 1024px) {}
