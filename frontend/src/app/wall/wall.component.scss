@@ -181,6 +181,12 @@ main {
         }
       }
     }
+
+    .noPictureToDisplay {
+      margin: 30px auto;
+      color: $lightRed;
+      font-size: 18px;
+    }
   }
 }
 
