@@ -18,6 +18,7 @@ const {
 
 //CREATE A NEW PICTURE
 exports.addPicture = (req, res) => {
+    console.log('CTRL PICTURES ADD ', req.body);
     const pictureObject = JSON.parse(req.body.picture);
 
     //If uploaded file is not of type image/gif

@@ -19,9 +19,11 @@ Then run `npm install` from `/backend` folder. This should install the required 
 - multer 1.4.4
 - mysql2 2.3.3
 - nodemon 2.0.16
+- password-validator 5.3.0
 - path 0.12.7
 - sequelize 6.19.0
 - sequelize-cli 6.4.1
+- validator 13.7.0
 - xss-clean 0.1.1
 
 ### **Usage**
