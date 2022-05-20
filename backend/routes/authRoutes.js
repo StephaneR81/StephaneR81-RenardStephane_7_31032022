@@ -6,11 +6,12 @@ const authMdw = require('./../middleware/authentication');
 
 const emailMdw = require('./../middleware/checkEmail');
 const passwordMdw = require('./../middleware/checkPassword');
+const nameMdw = require('./../middleware/checkName');
 
 
 router.post('/signup', emailMdw, passwordMdw, userCtrl.signup);
 router.post('/login', emailMdw, passwordMdw, rateLimitMdw, userCtrl.login);
-router.put('/update', emailMdw, passwordMdw, authMdw, userCtrl.updateProfile);
+router.put('/update', nameMdw, passwordMdw, authMdw, userCtrl.updateProfile);
 router.get('/user/:id', authMdw, userCtrl.getUser);
 router.get('/userlist', authMdw, userCtrl.getAllUsers);
 router.delete('/delete/:id', authMdw, userCtrl.deleteUser);

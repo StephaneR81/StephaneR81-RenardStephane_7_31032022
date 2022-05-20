@@ -82,8 +82,10 @@ export class WallComponent implements OnInit {
 
     this.pictureService.postOnePicture(this.userToken, formData).subscribe({
       next: (data) => {
+        
         this.textBoxStyle.color = 'green';
         this.response = data.message;
+        this.selectedFile = '';
         this.getAllPictures();
       },
       error: (error) => {

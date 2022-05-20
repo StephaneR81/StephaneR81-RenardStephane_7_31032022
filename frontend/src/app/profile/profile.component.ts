@@ -94,7 +94,7 @@ export class ProfileComponent implements OnInit {
       },
       error: (error) => {
         this.textBoxStyle.color = 'red';
-        this.response = error.message;
+        this.response = error;
       },
     });
   }

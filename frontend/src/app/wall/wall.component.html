@@ -35,9 +35,9 @@
   </section>
 
   <h2>Photos des membres</h2>
+  <p class="noPictureToDisplay">{{ noPictureMsg }}</p>
   <section class="main__wrapper">
 
-    <p class="noPictureToDisplay">{{ noPictureMsg }}</p>
     <a [routerLink]="['/pictures', picture.id]" *ngFor="let picture of this.pictures">
       <article>
         <figure>

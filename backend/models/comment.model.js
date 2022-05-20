@@ -17,8 +17,8 @@ module.exports = (sequelize, Sequelize) => {
                     msg: 'Veuillez saisir un commentaire'
                 },
                 len: {
-                    args: [3, 500],
-                    msg: 'Le commentaire doit être compris entre 3 et 500 caractères'
+                    args: [6, 500],
+                    msg: 'Le commentaire doit être compris entre 6 et 500 caractères'
                 }
             }
         },

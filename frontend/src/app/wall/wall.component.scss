@@ -19,16 +19,20 @@ main {
       align-items: center;
       width: 100%;
 
+      .errorFormMessage,
+      .errorTextBox {
+        min-width: 20px;
+        margin: 5px 0;
+        font-size: 18px;
+        color: $lightRed;
+      }
+
       .divFile {
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
         width: 100%;
         background-color: $lightGray;
-
-        p {
-          color: darken($darkGray, 50%);
-        }
       }
 
       .divTitle {
@@ -96,14 +100,6 @@ main {
       text-align: center;
     }
 
-    .errorFormMessage,
-    .errorTextBox {
-      min-width: 20px;
-      margin: 5px 0;
-      font-size: 18px;
-      color: $lightRed;
-    }
-
     // fieldset {}
 
     button {
@@ -129,6 +125,12 @@ main {
     background-color: $lightGray;
     text-align: center;
     font-size: 23px;
+  }
+
+  .noPictureToDisplay {
+    margin: 30px auto;
+    color: $lightRed;
+    font-size: 18px;
   }
 
   .main__wrapper {
@@ -180,12 +182,6 @@ main {
           }
         }
       }
-    }
-
-    .noPictureToDisplay {
-      margin: 30px auto;
-      color: $lightRed;
-      font-size: 18px;
     }
   }
 }

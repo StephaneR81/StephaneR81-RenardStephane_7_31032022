@@ -66,9 +66,10 @@ exports.signup = (req, res) => {
 
                                 .catch((error) => {
                                     //Create method failed
+                                    const errorMsg = error.message.split(': ')[1];
                                     return res.status(500)
                                         .json({
-                                            message: 'Erreur interne, veuillez retenter ultérieurement.'
+                                            message: errorMsg
                                         });
                                 });
                         })
@@ -84,17 +85,19 @@ exports.signup = (req, res) => {
 
                 .catch((error) => {
                     //findAll method failed
+                    const errorMsg = error.message.split(': ')[1];
                     return res.status(500)
                         .json({
-                            message: 'Erreur interne, veuillez retenter ultérieurement.'
+                            message: errorMsg
                         });
                 });
         })
         .catch((error) => {
             //FindOne method failed
+            const errorMsg = error.message.split(': ')[1];
             return res.status(500)
                 .json({
-                    message: 'Erreur interne, veuillez retenter ultérieurement.'
+                    message: errorMsg
                 });
         });
 };

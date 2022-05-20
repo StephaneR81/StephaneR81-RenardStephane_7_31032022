@@ -24,7 +24,7 @@
       <fieldset>
         <legend>Commenter cette photo</legend>
         <textarea formControlName="comment" name="commentField" id="commentField" cols="25" rows="5"
-          placeholder="Saisissez votre commentaire ici (500 caractères maximum)" minlength="3" maxlength="500"
+          placeholder="Saisissez votre commentaire ici (500 caractères maximum)" minlength="6" maxlength="500"
           required></textarea>
         <p *ngIf="submitted && formControls['comment'].errors" class="errorFormMessage">{{ formErrorMessage }}</p>
         <button type="submit" id="commentSubmit">Partager votre commentaire</button>
