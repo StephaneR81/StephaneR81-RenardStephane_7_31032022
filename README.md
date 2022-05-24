@@ -36,6 +36,11 @@ The app should reload automatically when you make a change to a file in case whe
 
 Use `Ctrl+C` in the terminal to stop the local server.
 
+**IMPORTANT** :
+If the database did not generate automatically or according to your preference, navigate to `/backend/assets` folder. You will find the corresponding SQL file.
+
+In your MySQL terminal, use `source <path_to_the_file>/<filename>` command to build the database structure.
+
 ---
 
 ## **Frontend Installation**
