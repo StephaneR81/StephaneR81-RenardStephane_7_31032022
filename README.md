@@ -1,5 +1,13 @@
 # Projet 7 Groupomania | OpenClassRooms
 
+Vous êtes développeur depuis plus d'un an chez CONNECT-E, une petite agence web regroupant une douzaine d'employés.
+
+Votre directrice, Stéphanie, vient de signer un nouveau contrat avec Groupomania, un groupe spécialisé dans la grande distribution, et l'un des plus fidèles clients de l'agence.
+
+Le projet consiste à construire un réseau social interne pour les employés de Groupomania. Le but de cet outil est de faciliter les interactions entre collègues.
+
+---
+
 ## **Backend installation**
 
 As the backend server uses a MySQL database, please first have a ready to use MySQL server.
