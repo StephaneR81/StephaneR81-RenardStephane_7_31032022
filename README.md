@@ -1,5 +1,7 @@
 # Projet 7 Groupomania | OpenClassRooms
 
+## **Scénario**
+
 Vous êtes développeur depuis plus d'un an chez CONNECT-E, une petite agence web regroupant une douzaine d'employés.
 
 Votre directrice, Stéphanie, vient de signer un nouveau contrat avec Groupomania, un groupe spécialisé dans la grande distribution, et l'un des plus fidèles clients de l'agence.
